@@ -1,0 +1,145 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Bar Graph</p>
+    </div>
+</div>
+
+<div class="page-body">
+    <p class="mb-1"><b>Bar graphs</b> along with <a {% if 'piechart' in navigation.charts.links %} class="dark-link"
+            href="{% url 'statistics101:piechart' %}" {% endif %}>pie charts</a> are the most common types of graphical
+        representation for <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}#qualitative-data" {% endif %}>qualitative data</a>. Like a
+        pie chart, a bar graph breaks categorical data down by group. Unlike a pie chart, it represents these amounts by
+        using bars of different lengths. While a pie chart most often reports the amount in each group as percentages,
+        a bar graph uses either the number of data points in each group (also called <i>frequency</i>) or the precentage
+        in each group (called <i>relative <nobr>frequency</i>).
+        {%spaceless%}
+        {% if source_1 %}<sup>[<a target="_blank"
+                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.96,101]</sup>
+        {% endif %}{%endspaceless%}</nobr> Bar charts are used for <a {% if 'surveys' in navigation.data.links %}
+            class="dark-link" href="{% url 'statistics101:surveys' %}" {% endif %}>surveys</a> where each person
+        surveyed is allowed to choose more than one answer. The
+        resulting data set would not sum to one, and a pie chart representation would not be <nobr>
+            possible.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.106]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-0">
+        The following tips help to evaluate a bar chart for statistical <nobr>correctness:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.102,106,337]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li>Making sure that categories of grouping for a numerical variable are equivalent.</li>
+
+        <li>Making sure that the scale, starting point and range of the axis of the bar graph is an appropriate
+            representation of the information.</li>
+        <li>Making sure how many variables are shown in the bar graph, and which should sum to one.</li>
+        <li>Considering the units being presented by the height of the bars and what the results mean in terms of those
+            units.</li>
+        <li>Checking total sample size if relative frequencies are given. Or dividing each bar by the total sample
+            size to get percentages for easier comparison, when frequencies are given.</li>
+        <li>Checking for overlapping boundaries of numerical groupings and clarifying how borderline values are treated.
+        </li>
+    </ul>
+    </p>
+
+    <p class="mb-1">A graph can be misleading through the choice of scale on the frequency/relative frequency axis
+        (where the amount
+        in each group is reported) and/or its starting value. The <i>scale</i> of
+        a graph is the quantity used to represent each tick mark on the axis of the graph. The scale can make a big
+        difference in terms of the way the graph or chart looks. Stretching the scale out or starting an axis at the
+        highest possible number makes differences appear larger; squeezing down the scale or starting the axis at a
+        lower value than needed makes differences appear smaller than they <nobr>are.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.39,42,104]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p>The bars in a bar graph don't connect, unlike the <a {% if 'histogram' in navigation.charts.links %}
+            class="dark-link" href="{% url 'statistics101:histogram' %}" {% endif %}>histogram</a>, since the bars
+        represent
+        distinct categories without
+        particular <nobr>order.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.108]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+    <div class="page-section">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="barchart-nav" role="tablist">
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="barchart-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#barchart-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="barchart-proportions-tab" data-bs-toggle="tab"
+                    data-bs-target="#barchart-proportions" type="button" role="tab">Proportions</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="barchart-surveys-tab" data-bs-toggle="tab"
+                    data-bs-target="#barchart-surveys" type="button" role="tab">Surveys</button>
+            </li>
+        </ul>
+        <!-- Content -->
+        <div class="tab-content" id="barchart-pages">
+            <!-- Timeseries -->
+            <div class="tab-pane fade show active" id="barchart-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 chart-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-chartdiv="ts-barchart" data-chartarea="ts-plotly-charts" data-f="get_barchart">
+                        {{ts.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="ts-barchart">
+                        <div id="ts-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Proportions -->
+            <div class="tab-pane fade" id="barchart-proportions" role="tabpanel">
+                <div class="chart-section">
+                    {% for pr in proportions %}
+                    <button class="purple-pill me-2 chart-btn" id={{pr.sample_name}} data-sampleid={{pr.id}}
+                        data-chartdiv="pr-barchart" data-chartarea="pr-plotly-charts" data-f="get_barchart">
+                        {{pr.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="pr-barchart">
+                        <div id="pr-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Content -->
+            <div class="tab-pane fade" id="barchart-surveys" role="tabpanel">
+                <div class="chart-section">
+                    {% for sur in surveys %}
+                    <button class="purple-pill me-2 chart-btn" id={{sur.sample_name}} data-sampleid={{sur.id}}
+                        data-chartdiv="sur-barchart" data-chartarea="sur-plotly-charts" data-f="get_barchart">
+                        {{sur.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="sur-barchart">
+                        <div id="sur-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

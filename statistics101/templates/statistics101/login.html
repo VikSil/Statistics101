@@ -1,0 +1,37 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+<!-- Title of the page -->
+<div>
+    <div class="page-header">
+        <p>Login</p>
+    </div>
+</div>
+
+
+
+<!-- Login form -->
+<div class="page-body">
+    <!-- Login error -->
+    {% if message %}
+    <div class="form-error">{{ message }}</div>
+    {% endif %}
+
+    <div class="form-group">
+        <form action="{% url 'statistics101:login' %}" method="post">
+            {% csrf_token %}
+            <!-- Form fields are defined in forms.py -->
+            {{loginform.as_p}}
+            <button class="purple-pill">
+                Login
+            </button>
+        </form>
+
+        <!-- Link to register template -->
+        <p class="mt-3">Don't have an account? <a href="{% url 'statistics101:register' %}" class="dark-link">Register
+                here.</a></p>
+
+    </div>
+</div>
+
+{% endblock %}

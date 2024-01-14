@@ -1,0 +1,205 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Standard Deviation</p>
+    </div>
+</div>
+
+<div class="page-body">
+
+    <p class="mb-1">Variation always exists in a data set, regardless of which characteristics are measured, because not
+        every data
+        point will have the same exact value for every variable. It is important to be able to measure variation in a
+        way that best captures <nobr>it.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.80]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p><b>The standard deviation</b> is a measurement for the amount of variability (or spread) among the numbers in a
+        data set. It is the most common measure of variation for <a {% if 'qqdata' in navigation.data.links %}
+            class="dark-link" href="{% url 'statistics101:qqdata' %}#quantitative-data" {% endif %}>numerical data</a>.
+        In very rough terms, standard deviation
+        is the average distance from the <a {% if 'mean' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:mean' %}" {% endif %}>mean</a>. The more concentrated data is, the smaller the
+        standard
+        <nobr>deviation.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.56]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+        Standard deviation of a <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:popsample' %}" {% endif %}>sample</a> is
+        commonly denoted by lowercase Latin letter <nobr>"<b>s</b>".{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.81]</sup>
+            {% endif %}{%endspaceless%}</nobr> The formula for standard deviation
+        <nobr>is:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.56]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+    <div class="formula">
+        <div class="formula-maths">
+            {{stdev_formula}}
+        </div>
+        <div class="formula-desc">
+            <p>
+                Where,<br>
+                <b>n</b> = the number of values in the data set<br>
+                <b>x</b> = the numbers in the data set<br>
+                <b>x̄</b> = the mean of the data set<br>
+            </p>
+        </div>
+    </div>
+    <p class="mb-1">The standard deviation of the entire <a {% if 'popsample' in navigation.data.links %}
+            class="dark-link" href="{% url 'statistics101:popsample' %}" {% endif %}>population</a> is denoted by
+        lowercase Greek letter
+        "<b>σ</b>",
+        pronounced as
+        <nobr>"sigma".{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.82]</sup>
+            {% endif %}{%endspaceless%}</nobr>.
+    </p>
+
+
+    <p class="mb-1">Properties of a standard deviation <nobr>are:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.83]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li>The standard deviation is always a positive number, due to the way it is calculated and the fact that it
+            measures a distance (distances are never negative numbers).</li>
+        <li>The smallest possible value for the standard deviation is zero, and that happens only in contrived
+            situations where every single number in the data set is exactly the same.</li>
+        <li>The standard deviation calculated from the mean and thus it is affected by outliers. When outliers are
+            removed from a data set, remaining values are more concentrated around the
+            mean, and standard deviation <nobr>decreases.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.83]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li>The standard deviation has the same units as the original data.</li>
+    </ul>
+    </p>
+
+
+    <p class="mb-1">A
+        small standard deviation means that the values in the data set are close ot the mean of the data set, on
+        average, and large standard deviation means that the values are spread out further away from the mean.
+        A small standard deviation can be a goal in certain situations, for example, in product manufacturing and
+        quality <nobr>control.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.82]</sup>
+            {% endif %}{%endspaceless%}</nobr> Units are important when representing standard deviation. For example, a
+        standard
+        deviation of 2 years is
+        equivalent to a standard deviation of 24 months, but the latter may <i>appear</i> greater than former. Value of
+        the mean relative to standard deviation is important
+        as well. If the mean is 5.2 and standard deviation is 3.4, that is a lot of variation, relatively speaking. But
+        if the mean is 25.6, the same standard deviation of 3.4 would be comparatively <nobr>smaller,{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.83]</sup>
+            {% endif %}{%endspaceless%}</nobr> if the theoretical minimum value for both distributions is zero.</p>
+
+    <p class="mb-1">The standard deviation is also used to describe where most of the data should fall compared to the
+        mean. For
+        example, if the data has the normal
+        distribution curve, about 95% of the data lies within two standard
+        deviations of the mean. This is called the <i>empirical rule</i> or <i>68-95-99.7% <nobr>rule</i>.{%spaceless%}
+        {% if source_1 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.57]</sup>
+        {% endif %}{%endspaceless%}</nobr> The <i>standard score</i> represents a number of standard deviations above or
+        below
+        the <nobr>mean.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.57-58]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+
+    <p><b>Sample variance</b> is another way to measure variation in a data set. Sample variance is equal
+        to standard
+        deviation squared, or "<b>s<sup>2</sup></b>", it is an intermediate value to calculating standard deviation. The
+        downside
+        of sample variance is that it is in square units. If the data is in dollars, for example, the variance would be
+        in square dollars, which makes no <nobr>sense.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.81]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+    <div class="page-section">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="stdev-nav" role="tablist">
+            {% if timeseries %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="stdev-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#stdev-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            {% endif %}
+            {% if proportions %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="stdev-proportion-tab" data-bs-toggle="tab"
+                    data-bs-target="#stdev-proportion" type="button" role="tab">Proportion</button>
+            </li>
+            {% endif %}
+            {% if surveys %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="stdev-survey-tab" data-bs-toggle="tab" data-bs-target="#stdev-survey"
+                    type="button" role="tab">Survey</button>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- Content -->
+        <div class="tab-content" id="stdev-pages">
+            <!-- Timeseries -->
+            <div class="tab-pane fade show active" id="stdev-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 statistics-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-datadiv="#ts-stdev" data-f="get_stdev">
+                        {{ts.sample_name}}
+                    </button>
+                    {% endfor %}
+
+                    <div id="ts-stdev">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <!-- Proportions -->
+            <div class="tab-pane fade" id="stdev-proportion" role="tabpanel">
+                <div class="chart-section">
+                    {% for pr in proportions %}
+                    <button class="purple-pill me-2 statistics-btn" id={{pr.sample_name}} data-sampleid={{pr.id}}
+                        data-datadiv="#pr-stdev" data-f="get_stdev">
+                        {{pr.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="pr-stdev">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <!-- Surveys -->
+            <div class="tab-pane fade" id="stdev-survey" role="tabpanel">
+                <div class="chart-section">
+                    {% for sur in surveys %}
+                    <button class="purple-pill me-2 statistics-btn" id={{sur.sample_name}} data-sampleid={{sur.id}}
+                        data-datadiv="#sur-stdev" data-f="get_stdev">
+                        {{sur.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="sur-stdev">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

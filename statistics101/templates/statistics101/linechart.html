@@ -1,0 +1,112 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Line Graph</p>
+    </div>
+</div>
+
+<div class="page-body">
+    <p class="mb-1"><b>A line graph</b> (also called a <i>time chart</i>) is a data display used to examine trends in
+        data over time,
+        also known as <i>time series data</i>. Line graphs show time on the x-axis (for example, by month, year, or day)
+        and the values of the <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}" {% endif %}>variable</a> being measured on the y-axis. Each
+        point on the line graph summarizes the data
+        collected at that particular <nobr>time.{%spaceless%}{% if source_1 %}
+            <sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.127]</sup>
+            {% endif %}{%endspaceless%}
+        </nobr>
+        Line graph is interpreted by looking for patterns and trends in the graph from left to <nobr>right.{%spaceless%}
+            {% if source_1 %}
+            <sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.127]</sup>
+            {% endif %}{%endspaceless%}
+        </nobr>
+    </p>
+
+
+
+    <p class="mb-0">
+        Tips for evaluating a line graph and spotting misleading representations <nobr>are:{%spaceless%}
+            {% if source_1 %}
+            <sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.128,130-131,339]</sup>
+            {% endif %}{%endspaceless%}
+        </nobr>
+    <ul>
+        <li>The scale of the vertical axis can make a big difference in the way the time chart looks. Large increments
+            and/or lots of white space makes differences look less dramatic; small increments and/or a plot that totally
+            fills the page exaggerates the differences.</li>
+        <li>Too many points will look overwhelming and make it difficult to spot large patterns in the data. It may be
+            appropriate to reduce a chart
+            to longer intervals on the time
+            axis and plot a <a {% if 'mean' in navigation.stats.links %} class="dark-link"
+                href="{% url 'statistics101:mean' %}" {% endif %}>
+                mean</a> or <a {% if 'median' in navigation.stats.links%} class="dark-link"
+                href="{% url 'statistics101:median' %}" {% endif %}>median</a> value for all data
+            points that fall in each
+            interval instead.
+        </li>
+        <li>Conversely, too few points may oversimplify the graph and obscure smaller patterns.</li>
+        <li>Presence of the trend in a time chart does not explain why the trend exists. Additional statistics are
+            required to confirm any hypothesis or cause-and-effect.</li>
+        <li>Gaps in timeline should be of the same length relative to each other. Time should be treated as intervals
+            rather than just labels.</li>
+        <li>Units should be appropriate for plotting of change over time. For example, plotting rates of a variable
+            absolute values (e.g. crimes per capita) over time is more appropriate than
+            plotting absolute number of the same variable (e.g. number of crimes).</li>
+
+    </ul>
+
+    </p>
+
+    <p>Variability in a line graph should not be confused with the
+        variability in a <a {% if 'histogram' in navigation.charts.links %} class="dark-link"
+            href="{% url 'statistics101:histogram' %}" {% endif %}>histogram</a>. If values change over
+        time, they are shown on a line graph as highs and lows, and many changes from high to low indicate lots of
+        variability. A flat line on a time chart indicates no change and no variability in the values accross time. But
+        when the top of a histogram appears flat, the data is spread out uniformly accross all groups, indicating a
+        great deal of variability in the <nobr>data.{%spaceless%}
+            {% if source_1 %}
+            <sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.128]</sup>
+            {% endif %}{%endspaceless%}
+        </nobr>
+    </p>
+
+
+    <div class="page-section">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="line-nav" role="tablist">
+            {% if timeseries %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="line-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#line-timeseries" type="button" role="tab">Time
+                    series</button>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- Content -->
+        <div class="tab-content" id="line-pages">
+            <!-- Timeseries only -->
+            <div class="tab-pane fade show active" id="line-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 chart-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-chartdiv="ts-line" data-chartarea="ts-plotly-charts" data-f="get_linechart">
+                        {{ts.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="ts-line">
+                        <div id="ts-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

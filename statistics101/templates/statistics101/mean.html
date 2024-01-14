@@ -1,0 +1,173 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div class="page-body">
+    <div class="page-header">
+        <p>Mean</p>
+    </div>
+</div>
+
+<div class="page-body">
+
+    <p><a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}#quantitative-data" {% endif %}>Quantitative data</a> represents
+        measurable characteristics such as height, age, income etc. by numbers
+        or count of units. Because such data has numerical meaning, it can be
+        summarised in more ways than is possible with <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}#qualitative-data" {% endif %}>qualitative data</a>. The most common
+        way to summarise <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}#quantitative-data" {% endif %}>quantitative
+            data</a> set is to describe where the "center" is that represents a typical value. The center of a data set
+        can
+        be measured in different ways, and the method chosen can greatly influence the conclusions about the
+        <nobr>data.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.75]</sup>
+            {% endif %}{%endspaceless%}</nobr> <b>Mean</b>, also referred to as "<i>average</i>" is the most common
+        statistic used to measure the center, or
+        middle of a numerical data set. The mean is
+        calculated as the sum of all the numbers divided by the total count
+        of numbers. The mean of a <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:popsample' %}" {% endif %}>sample</a> is called the <i>sample mean</i> and is
+        denoted by latin letter "<b>x̄</b>" with a macron over it, pronounced as
+        "ex <nobr>bar".{%spaceless%}
+            {% if source_6 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_6}}</a>]</sup>
+            {% endif %}{%endspaceless%}</nobr> The formula to finding the sample mean <nobr>is:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.76]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+    <div class="formula">
+        <div class="formula-maths">
+            {{mean_formula}}
+        </div>
+        <div class="formula-desc">
+            <p>
+                Where,<br>
+                <b>x</b> = each value in the data set<br>
+                <b>i</b> = the counter of the values in the data set, from 1 to n<br>
+                <b>n</b> = the total number of values in the data set<br>
+            </p>
+        </div>
+    </div>
+    <p class="mb-1">The mean of the entire <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:popsample' %}" {% endif %}>population</a> is called the <i>population
+            mean</i>, and it is denoted by Greek letter "<b>μ</b>", pronounced as <nobr>"mu".{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.54,76]</sup>
+            {% endif %}{%endspaceless%}{%spaceless%}
+            {% if source_7 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_7}}</a>]</sup>
+            {% endif %}{%endspaceless%}</nobr> It is found by summing up all the values in the population and dividing
+        by population
+        size, which is denoted by capital Latin letter "<b>N</b>". Typically, the population mean is unknown and sample
+        mean is used
+        to estimate it, plus or minus margin of
+        <nobr>error
+            </a>.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.76]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+
+    </p>
+    <p> The mean may not be a fair representation of the data, because the average is
+        easily influenced by <nobr>outliers.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.56]</sup>
+            {% endif %}{%endspaceless%}</nobr> <b>Outliers</b> in a quantitative data set are numbers that are extremely
+        high or extremely low compared to the
+        rest of the data.{%spaceless%}
+        {% if source_1 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.77]</sup>
+        {% endif %}{%endspaceless%} Like the exact balancing point of a seesaw is affected by the weight of
+        the people
+        on each
+        side, not by the number of people of each side, the mean is affected by the actual values of the data, rather
+        than the amount of <nobr>data.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.113]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+        In a skewed data set outliers will "attract" the
+        mean, i.e. the mean will be closer
+        to the outliers than the <a {% if 'median' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:median' %}" {% endif %}>median</a>. Because of the way mean is calculated, high
+        outliers tend to drive the mean upward, and low outliers tend to
+        drive mean <nobr>downwards.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.77]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+
+    <div class="page-section">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="mean-nav" role="tablist">
+            {% if timeseries %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="mean-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#mean-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            {% endif %}
+            {% if proportions %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="mean-proportion-tab" data-bs-toggle="tab" data-bs-target="#mean-proportion"
+                    type="button" role="tab">Proportion</button>
+            </li>
+            {% endif %}
+            {% if surveys %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="mean-survey-tab" data-bs-toggle="tab" data-bs-target="#mean-survey"
+                    type="button" role="tab">Survey</button>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- Content -->
+        <div class="tab-content" id="mean-pages">
+            <!-- Timeseries -->
+            <div class="tab-pane fade show active" id="mean-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 statistics-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-datadiv="#ts-mean" data-f="get_mean">
+                        {{ts.sample_name}}
+                    </button>
+                    {% endfor %}
+
+                    <div id="ts-mean">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <!-- Proportions -->
+            <div class="tab-pane fade" id="mean-proportion" role="tabpanel">
+                <div class="chart-section">
+                    {% for pr in proportions %}
+                    <button class="purple-pill me-2 statistics-btn" id={{pr.sample_name}} data-sampleid={{pr.id}}
+                        data-datadiv="#pr-mean" data-f="get_mean">
+                        {{pr.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="pr-mean">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <!-- Surveys -->
+            <div class="tab-pane fade" id="mean-survey" role="tabpanel">
+                <div class="chart-section">
+                    {% for sur in surveys %}
+                    <button class="purple-pill me-2 statistics-btn" id={{sur.sample_name}} data-sampleid={{sur.id}}
+                        data-datadiv="#sur-mean" data-f="get_mean">
+                        {{sur.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="sur-mean">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

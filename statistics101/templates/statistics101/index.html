@@ -1,0 +1,304 @@
+<!-- The main landing page of the website -->
+
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+        <div class="page-header">
+                <p>Welcome to Statistics 101</p>
+        </div>
+
+        <div class="page-body">
+                <p>
+                        This website was developed as the Final Project for <a class="dark-link"
+                                href="https://cs50.harvard.edu/web/2020/">Harvard OpenCourseWare CS50 Web</a>
+                        course.<br>
+                </p>
+
+                <p>
+                        The website explores the basics of statistics - a branch of mathematics that pertains to the
+                        collection, analysis, interpretation or explanation, and
+                        presentation of <nobr>data.{%spaceless%}{%if source_2 %}
+                                <sup>[<a target="_blank"
+                                                href="{% url 'statistics101:sources' %}">{{source_2}}</a>]</sup>
+                                {% endif %}{%endspaceless%}
+                        </nobr>
+                        Each page is dedicated to a topic within statistics, describing common
+                        terminology, numerical measures (also collectively referred to as <nobr>
+                                "<i>statistics</i>"){%spaceless%}
+                                {%if source_1 %}<sup>[<a target="_blank"
+                                                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.2]</sup>
+                                {% endif %}{%endspaceless%}</nobr> and graphical representations.
+                </p>
+
+                <p class="mb-0">The concepts that are covered on the pages of this website are:</p>
+
+                <!-- The links to other pages will be visible if not commented out in NAVIGATION_PANE structure in globals.py -->
+                <!-- Data section -->
+                {%if 'data' in navigation %}
+                <p class="mb-0"><b>{{navigation.data.long}}</b>: as measurements or observations that are collected as a
+                        source of
+                        <nobr>information.{%spaceless%}
+                                {%if source_10 %}<sup>[<a target="_blank"
+                                                href="{% url 'statistics101:sources' %}">{{source_10}}</a>]</sup>
+                                {% endif %}{%endspaceless%}</nobr> This section covers definitions, types of data, as
+                        well as
+                        principles and
+                        methods of
+                        collecting data.
+                </p>
+
+                <ul>
+                        <!-- Data sub-sections -->
+                        {%if 'qqdata' in navigation.data.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:qqdata'%}"
+                                                class="undecorated-link">{{navigation.data.links.qqdata}}</a></i> -
+                                <small> the two groups that most data falls into are quantitative (numerical) or
+                                        qualitative
+                                        (categorical) <nobr>data.{%spaceless%}
+                                                {% if source_1 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.50]</sup>
+                                                {% endif %}{%endspaceless%}</nobr> </small>
+                        </li>
+                        {%endif%}
+                        {%if 'popsample' in navigation.data.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:popsample'%}"
+                                                class="undecorated-link">{{navigation.data.links.popsample}}</a></i>
+                                -
+                                <small> a population is the complete group that is being studied or referred to, and a
+                                        sample is a
+                                        subset of units from a population, selected to represent all units in that
+                                        <nobr>population.{%spaceless%}
+                                                {% if source_10 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_10}}</a>]</sup>
+                                                {% endif %}{%endspaceless%}</nobr>
+                                </small>
+                        </li>
+                        {%endif%}
+                        {%if 'surveys' in navigation.data.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:surveys'%}"
+                                                class="undecorated-link">{{navigation.data.links.surveys}}</a></i> -
+                                <small>the most common type of
+                                        observational <nobr>study,{%spaceless%} {% if source_1 %}<sup>[<a
+                                                                target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.11,62]</sup>
+                                                {% endif %}{%endspaceless%}</nobr> that is used to collect statistical
+                                        data.</small>
+                        </li>
+                        {%endif%}
+                        {%if 'experiments' in navigation.data.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:experiments'%}"
+                                                class="undecorated-link">{{navigation.data.links.experiments}}</a></i> -
+                                <small>a type of controlled <nobr>study{%spaceless%}
+                                                {%if source_10 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_10}}</a>]</sup>
+                                                {% endif %}{%endspaceless%}</nobr> that is used to collect statistical
+                                        data.</small>
+                        </li>
+                        {%endif%}
+                </ul>
+                {%endif%}
+
+                <!-- Statistics section -->
+                {%if 'stats' in navigation %}
+                <p class="mb-0"><b>{{navigation.stats.long}}</b>: as descriptive statistics, one of the two major ways
+                        of
+                        summarising and representing <i>"the
+                                big
+                                picture"</i> by using numbers to describe the important features of
+                        <nobr>data.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                                                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.14-15]</sup>
+                                {% endif %}{%endspaceless%}</nobr>
+                </p>
+                <ul>
+                        <!-- Statistics sub-sections -->
+                        {%if 'mean' in navigation.stats.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:mean'%}"
+                                                class="undecorated-link">{{navigation.stats.links.mean}}</a></i> -
+                                <small>the sum of the value of each observation in a dataset divided by the number of
+                                        observations,
+                                        also known as the "arithmetic <nobr>average".{%spaceless%}
+                                                {%if source_10 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_10}}</a>]</sup>
+                                                {% endif %}{%endspaceless%}</nobr></small>
+                        </li>
+                        {%endif%}
+                        {%if 'median' in navigation.stats.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:median'%}"
+                                                class="undecorated-link">{{navigation.stats.links.median}}</a></i> -
+                                <small>the middle value in distribution when the values are arranged in ascending or
+                                        descending
+                                        <nobr>order.{%spaceless%}
+                                                {%if source_10 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_10}}</a>]</sup>
+                                                {% endif %}{%endspaceless%}</nobr>
+                                </small>
+                        </li>
+                        {%endif%}
+                        {%if 'stdev' in navigation.stats.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:stdev'%}"
+                                                class="undecorated-link">{{navigation.stats.links.stdev}}</a></i> -
+                                <small>the measure of the spread of the data around the <nobr>mean.{%spaceless%}
+                                                {%if source_10 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_10}}</a>]</sup>
+                                                {% endif %}{%endspaceless%}</nobr></small>
+                        </li>
+                        {%endif%}
+                        {%if 'percentiles' in navigation.stats.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:percentiles'%}"
+                                                class="undecorated-link">{{navigation.stats.links.percentiles}}</a></i>
+                                -
+                                <small>a statistic that reports relative standing and marks a certain percentage of the
+                                        way through
+                                        the <nobr>data.{%spaceless%}
+                                                {% if source_1 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.88-89]</sup>
+                                                {% endif %}{%endspaceless%}</nobr></small>
+                        </li>
+                        {%endif%}
+                </ul>
+                {%endif%}
+
+                <!-- Charts section -->
+                {%if 'charts' in navigation %}
+                <p class="mb-0"><b>{{navigation.charts.long}}</b>: as the second of the two major ways of summarising
+                        and
+                        representing <i>"the
+                                big
+                                picture"</i> by using graphical representations to describe <nobr>data.{%spaceless%}
+                                {% if source_1 %}<sup>[<a target="_blank"
+                                                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.14,108]</sup>
+                                {% endif %}{%endspaceless%}</nobr>
+                </p>
+                <ul>
+                        <!-- Charts sub-sections -->
+                        {%if 'piechart' in navigation.charts.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:piechart'%}"
+                                                class="undecorated-link">{{navigation.charts.links.piechart}}</a></i> -
+                                <small>one of the most common types of graphical representation of qualitative data that
+                                        that breaks
+                                        the data down by <nobr>group.{%spaceless%}
+                                                {% if source_1 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.96]</sup>
+                                                {% endif %}{%endspaceless%}</nobr></small>
+                        </li>
+                        {%endif%}
+                        {%if 'barchart' in navigation.charts.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:barchart'%}"
+                                                class="undecorated-link">{{navigation.charts.links.barchart}}</a></i> -
+                                <small>a type of graph in which each column (plotted either vertically or horizontally)
+                                        represents a categorical variable or a discrete ungrouped numeric <nobr>
+                                                variable{%spaceless%}
+                                                {%if source_10 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_10}}</a>]</sup>
+                                                {% endif %}{%endspaceless%}</nobr></small>
+                        </li>
+                        {%endif%}
+                        {%if 'histogram' in navigation.charts.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:histogram'%}"
+                                                class="undecorated-link">{{navigation.charts.links.histogram}}</a></i> -
+                                <small> a type of chart that provides a snapshot of all data broken down into
+                                        numerically ordered <nobr>groups.{%spaceless%}{% if source_1 %}<sup>[<a
+                                                                target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.108]</sup>
+                                                {% endif %}{%endspaceless%}</nobr></small>
+                        </li>
+                        {%endif%}
+                        {%if 'linechart' in navigation.charts.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:linechart'%}"
+                                                class="undecorated-link">{{navigation.charts.links.linechart}}</a></i> -
+                                <small>graphical representation of collection of observations obtained through repeated
+                                        measurements
+                                        over <nobr>time.{%spaceless%}
+                                                {%if source_10 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_10}}</a>]</sup>
+                                                {% endif %}{%endspaceless%}</nobr></small>
+                        </li>
+                        {%endif%}
+                        {%if 'boxplot' in navigation.charts.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:boxplot'%}"
+                                                class="undecorated-link">{{navigation.charts.links.boxplot}}</a></i> -
+                                <small>a one-dimensional graph of numerical data divided in four parts, with each part
+                                        containing 25% of the <nobr>data.{%spaceless%}{% if source_1 %}<sup>[<a
+                                                                target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.120]</sup>
+                                                {% endif %}{%endspaceless%}</nobr></small>
+                        </li>
+                        {%endif%}
+                        {%if 'scatterplot' in navigation.charts.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:scatterplot'%}"
+                                                class="undecorated-link">{{navigation.charts.links.scatterplot}}</a></i>
+                                -
+                                <small>a two-dimensinal graph for representing simultaneously collected pairs of <nobr>
+                                                data.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                                                                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.295]</sup>
+                                                {% endif %}{%endspaceless%}</nobr></small>
+                        </li>
+                        {%endif%}
+                </ul>
+                {%endif%}
+
+                <!-- Data sets section -->
+                {%if 'ds' in navigation %}
+                <p class="mb-0"><b>{{navigation.ds.long}}</b>: as collections of <nobr>observations{%spaceless%}
+                                {%if source_10 %}<sup>[<a target="_blank"
+                                                href="{% url 'statistics101:sources' %}">{{source_10}}</a>]</sup>
+                                {% endif %}{%endspaceless%}</nobr> organised in a grid.</p>
+                <ul>
+                        <!-- Data sets sub-sections -->
+                        {%if 'inbuilts' in navigation.ds.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:inbuilts'%}"
+                                                class="undecorated-link">{{navigation.ds.links.inbuilts}}</a></i> -
+                                <small>this section lists and explains all data sets that are available to all
+                                        users.</small>
+                        </li>
+                        {%endif%}
+                        {%if 'userdata' in navigation.ds.links %}
+                        <li>
+                                <i><a href="{% url 'statistics101:userdata'%}"
+                                                class="undecorated-link">{{navigation.ds.links.userdata}}</a></i> -
+                                <small>this section allows users upload, edit and delete their own data structures to
+                                        use elsewhere
+                                        on the website.</small>
+                        </li>
+                        {%endif%}
+                </ul>
+                {%endif%}
+
+                <!-- Sources section -->
+                {%if 'sources' in navigation %}
+                <p class="mb-0"><b><a href="{% url 'statistics101:sources'%}"
+                                        class="undecorated-link">{{navigation.sources.long}}</a></b>:
+                        as a list of all sources referenced in and used for this website.</p>
+                {%endif%}
+
+                <!-- Footer -->
+                <hr>
+                <p class="mb-0">This project was built using the following programming languages and tools:</p>
+                <ul>
+                        <li>Django framework</li>
+                        <li>A handful of Python libraries, most notably Pandas and Plotly</li>
+                        <li>HTML with Sass CSS, Bootstrap, MathJax and Dropzone</li>
+                        <li>Javascript</li>
+                </ul>
+                </p>
+        </div>
+</div>
+
+{% endblock %}

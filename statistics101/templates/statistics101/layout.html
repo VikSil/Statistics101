@@ -1,0 +1,160 @@
+<!-- The common layout that is extended by all pages on the website -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- This will show up as the title on the browser tab -->
+    <title>{% block title %}STATISTICS 101{% endblock %}</title>
+    <!-- Links to stylesheets -->
+    <!-- This websites own stylesheet -->
+    <link href="{% static 'statistics101/css/styles.css' %}" rel="stylesheet">
+    <!-- Dropzone stylesheet -->
+    <link href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+
+    {% block head_scripts %}
+    {% endblock %}
+</head>
+
+
+<!-- Body classes define global formatting -->
+
+<body class=" text-plumpurple text-bg-plumpink">
+    <!-- Page wrapper -->
+    <div class="d-flex flex-column">
+        <!-- Header bar -->
+        <div class="d-flex flex-row justify-content-between text-bg-plumpurple">
+            <!-- Button to slide in the navigation pane (on far left) -->
+            <div class="flex-row p-3">
+
+                <button class="btn btn-plumlight" type="button" id="off-canvas-body-toggle" data-bs-toggle="offcanvas"
+                    data-bs-target="#floating-menu"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="#422543" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8Zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5Z" />
+                    </svg></button>
+            </div>
+
+            <!-- Log in elements (on far right) -->
+            <div class="d-flex flex-column ">
+                <!-- Authentication status -->
+                <div class="m-2 text-end text-plumlight">
+                    {% if user.is_authenticated %}
+                    Signed in as <strong>{{ user.username }}</strong>
+                    {% else %}
+                    Not signed in
+                    {% endif %}
+                </div>
+                <!-- Autentication links -->
+                <div class="d-flex flex-row mb-2 justify-content-end text-plumdark">
+                    <!-- Only show Log Out link to authorised users -->
+                    {% if user.is_authenticated %}
+                    <div class="mx-2"><a class="undecorated-link" href="{% url 'statistics101:logout' %}">Log Out</a>
+                    </div>
+                    {% else %}
+                    <!-- Only show Log In and Register links if user is not authorised -->
+                    <div class="mx-2"><a class="undecorated-link" href="{% url 'statistics101:login' %}">Log In</a>
+                    </div>
+                    <div class="mx-2"><a class="undecorated-link" href="{% url 'statistics101:register' %}">Register</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Navigation pane -->
+        <div class="offcanvas offcanvas-start show text-bg-plumpurple" data-bs-scroll="true" data-bs-backdrop="false"
+            tabindex="-1" id="floating-menu">
+            <!-- Floating pane dismiss button - not visible above middle screen size -->
+            <div class="offcanvas-header d-xl-none d-lg-none pb-0">
+                <button type="button" class="btn btn-plumlight btn-close-plumlight" id="off-canvas-body-dismiss"
+                    data-bs-dismiss="offcanvas"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="#422543" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z" />
+                    </svg></button>
+            </div>
+            <!-- The Navigation Menu -->
+            <div class="offcanvas-body">
+                <!-- Border around the entire Menu -->
+                <div class="accordion m-0 border border-4 border-plumdark rounded-4" id="nav-accordion">
+                    <!-- Iterate through the large menu items -->
+                    {% for key, value in navigation.items %}
+
+                    <!-- If the large menu contains sub-links -->
+                    {% if value.type == 'dict' %}
+                    <div class="accordion-item border-4 border-plumdark text-bg-plumdark ">
+                        <h2 class="accordion-header">
+                            <!-- Show toggle button -->
+                            <button class="accordion-button text-bg-plumred text-plumpink ps-2 pt-1 pb-2 pe-2 fs-3"
+                                type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapse-{{key}}">
+                                <!-- Use value.long for menu items -->
+                                <p class="pe-2 m-0">{{value.long}}</p>
+                            </button>
+                        </h2>
+                        <!-- Display sub-links-->
+                        <div id="panelsStayOpen-collapse-{{key}}" class="accordion-collapse collapse show ">
+                            <div class="d-flex accordion-body text-bg-plumlight p-0 text-center">
+                                <div class="flex-fill  btn-group-vertical p-0 " role="group">
+                                    <!-- Iterate through sub-menu items -->
+                                    {% for subkey, subvalue in value.links.items%}
+                                    <button type="button"
+                                        class="btn border-plumdark text-plumdark rounded-0 border-start-0 border-end-0 border-bottom-0 py-0 m-0 fs-5"><a
+                                            class="nav-link outlined outlined-link"
+                                            href="{% url  'statistics101:'|add:subkey %}">{{subvalue}}</a></button>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- If the large menu does not contain sub-links -->
+                    {%else %}
+                    <div class="accordion-item border-4 border-plumdark text-bg-plumpurple ">
+                        <a class="undecorated-link" href="{% url  'statistics101:'|add:value.links %}">
+                            <h2
+                                class="accordion-header p-0 text-bg-plumred text-plumpink ps-2 pt-1 pb-2 pe-2 fs-3 fw-normal">
+                                <!-- Only show the large menu item, no toggle button -->
+                                {{value.long}}
+                            </h2>
+                        </a>
+                        <div id="panelsStayOpen-collapse{{key}}" class="accordion-collapse collapse show">
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        <!-- The body of content-->
+        <div class="main-area" id="main-area">
+            {% block body %}
+            {% endblock %}
+        </div>
+
+    </div>
+
+    <!-- References to JS files -->
+    {% block scripts %}
+    <!-- Websites main JS file, including async requests -->
+    <script src="{% static 'statistics101/js/statistics101.js' %}"></script>
+    <!-- Bootstrap JS for the floating pane -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- Dropzone JS for file upload -->
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <!-- MathJax for formula formatting -->
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    {% endblock %}
+
+</body>
+
+
+</html>

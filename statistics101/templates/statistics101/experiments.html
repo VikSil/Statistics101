@@ -1,0 +1,283 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Controlled Studies</p>
+    </div>
+</div>
+
+<div class="page-body">
+
+    <p class="mb-1"><b>An experiment</b> is a study that imposes one or more treatments on the participants and controls
+        their
+        environment in such a way that clear comparisons [to lack of
+        treatment] can be made. After the treatments are applied, the responses (i.e. effects or lack there off) are
+        <nobr>recorded.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.12,60]</sup>{% endif %}{%endspaceless%}
+        </nobr> Contrary to
+        observational studies, which aim to <b><i>not affect</i></b> the individuals that are being studied, experiments
+        aim to <b><i>affect</i></b> them in order to study the consequence or degree of change. An individual
+        participating in a study is called a <b>subject</b>. A <b>response</b>
+        is the <a {% if 'qqdata' in navigation.data.links %} class="dark-link" href="{% url 'statistics101:qqdata' %}"
+            {% endif %}>variable</a>
+        whose
+        outcome is of interest in the experiment. A <b>factor</b> is the variable
+        whose effect on the response is being studied. A <b>level</b> is a possible outcome of the factor. Each factor
+        has a certain number of levels. A <b>treatment</b> is a combination of the levels of the factors being
+        studied. If there is only one factor, then levels and treatments are the same thing. If there are several
+        factors, then each combination of levels of the factors is called a <nobr>treatment.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.276-277]</sup>
+            {% endif %}{%endspaceless%}</nobr> At the end of the experiment, responses of participants in the treatment
+        group are compared with the
+        responses from the control group. When
+        designed correctly, an experiment can establish a <b>cause-and-effect</b> relationship
+        between treatment and response, if the difference in responses between the treatment group and
+        the control group are statistically
+        <nobr>significant.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.12,60-61]</sup>
+            {% endif %}{%endspaceless%}</nobr> Unfortunately, if an experiment was done poorly, nothing can be done
+        after the
+        fact, other than to ignore the
+        <nobr>results.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.292]</sup>{% endif %}{%endspaceless%}
+        </nobr>
+
+    </p>
+
+    <p class="mb-0">Subjects who are chosen to participate in the experiment are typically divided into two groups: a
+        treatment group
+        and a control <nobr>group:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.61]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li>
+            <div class="d-flex">
+                <div class="d-flex flex-nowrap"><b>Treatment group</b> - </div>
+                <div>consists of participants who receive the experimental treatment, effect of which is being
+                    studied. More than one treatment group is possible.</div>
+            </div>
+        </li>
+        <li>
+            <div class="d-flex">
+                <div class="d-flex flex-nowrap"><b>Control group</b> - </div>
+                <div>consists of participants who receive a placebo (a fake treatment), a standard
+                    (non-experimental) treatment, or no treatment at all.</div>
+            </div>
+        </li>
+    </ul>
+    </p>
+
+
+    <p class="mb-1"><b>A blind experiment</b> is one in which the subjects of the study don't know whether they are in
+        the
+        treatment group or the control group. A blind experiment attempts to control for bias on the part of the
+        <nobr>participants.{%spaceless%}
+            {% if source_1%}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.62]</sup>
+            {% endif %}{%endspaceless%}</nobr> <b>A double-blind experiment</b> means that neither the subjects nor the
+        researchers
+        know who got what treatment
+        or
+        who is in the control group. This controls for potential bias on the part of both the subjects and
+        the researchers. Researchers cannot treat the
+        subjects differently by expecting or not expecting certain responses from certain individuals based on which
+        group they are in. This also allows to
+        control for the placebo effect in both <nobr>groups.{%spaceless%}
+            {% if source_1%}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.288]</sup>
+            {% endif %}{%endspaceless%}</nobr> Typically a third
+        party, who is not otherwise involved in the experiment, puts the results together independently. A double-blind
+        study is best, because researchers often have a special interest in the <nobr>results.{%spaceless%}
+            {% if source_1%}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.62]</sup>
+            {% endif %}{%endspaceless%}</nobr> In some cases it is known which subjects are in which group because it is
+        unconcealable. However, bias can be
+        reduced by not telling the subjects the precise purpose of the study. This type of a study would have to be
+        reviewed by an institutional review board to make sure it isn't unethical to carry <nobr>out.{%spaceless%}
+            {% if source_1%}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.289]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-0">Potential problems that can occur with experiments <nobr>include:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.12]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li>Researchers and/or subjects who know which treatment they got.</li>
+        <li>Factors not controlled for that affect the outcome.</li>
+        <li>Lack of control group.</li>
+
+    </ul>
+    </p>
+
+    <p class="mb-0">An experiment must comply with the following criteria for it to be <nobr>credible:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.278]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li><i><u>Making comparisons</u></i> - to establish the real effect that a factor has on the
+            response, there has to be a baseline to compare to. This baseline is called the <i>control</i>. Without a
+            control group there is nothing to compare the results to, and it is impossible to know
+            whether the treatment was the real cause of any differences found in the response. Common
+            methods for including control are to administer a fake treatment, a standard treatment or no treatment at
+            <nobr>all.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.279]</sup>
+                {% endif %}{%endspaceless%}</nobr> A fake treatment (also called a <i>placebo</i>) is not
+            distinguishable from a
+            "real" treatment. A placebo
+            establishes a baseline measure for what responses would have taken place anyway, in absence of any
+            treatment.
+            It also takes into account the <b>placebo effect</b>- a response that people have (or report having) because
+            they know they are getting some type of a "treatment" (regardless if it is real or fake). If placebo effect
+            is not taken into account, any reported side effect has to be assumed to be due to the treatment. This would
+            give an artificially high number of reported side effects, because at least some of those reports are likely
+            due to the placebo effect and not the treatment itself. When there is a control group to compare with, the
+            percentage of people reporting a side effect in the control group is subtracted from the percentage of
+            people in the treatment group reporting the same side effect, allowing to examine the magnitude of the
+            number
+            that <nobr>remains.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.280]</sup>
+                {% endif %}{%endspaceless%}</nobr> In some situations, such as when the subjects have very serious
+            diseases,
+            offering a fake treatment as an option may be unethical. When ethical reasons bar the use of a fake
+            treatment, the new treatment is compared to at least one existing or standard treatment that is known to be
+            an effective treatment.
+            In situations where the control group receives no treatment, researchers must make sure that the groups of
+            subjects are similar in as many ways as <nobr>possible.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.281]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li><i><u>Choosing a large enough sample size for accurate results</u></i> - the
+            larger the <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+                href="{% url 'statistics101:popsample' %}" {% endif %}>sample size</a>, the
+            more
+            accurate are the <nobr>results.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.281]</sup>
+                {% endif %}{%endspaceless%}</nobr> Detecting true statistically significant results in
+            a large <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+                href="{% url 'statistics101:popsample' %}" {% endif %}>population</a> using a
+            small sample is difficult because small data sets have more <a {% if 'stdev' in navigation.stats.links %}
+                class="dark-link" href="{% url 'statistics101:stdev' %}" {% endif %}>variability</a> from sample to
+            sample. Statisticians
+            want to have at least five subjects per treatment, but (much) more is (much) better. Sometimes researchers
+            draw conclusions based on only those subjects who completed the study. This can be misleading, because the
+            data does not include information about those who dropped out and why,
+            which can lead to <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+                href="{% url 'statistics101:popsample' %}" {% endif %}>biased <nobr> data</a> .{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.282-283]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li><i><u>Choosing subjects that most accurately represent the target population</u></i> - in most cases it is
+            not
+            appropriate to <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+                href="{% url 'statistics101:popsample' %}" {% endif %}>randomly</a> select subjects for an experiment.
+            In the setting of experiments, a sample means the
+            group of subjects who have volunteered to
+            participate. [In this sense the sample is not entirely random, because the subjects are
+            self-selecting] However, statisticians can build techniques into the design of an experiment to help
+            minimise the potential bias that can <nobr>occur.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.282-283]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li><i><u>Assigning subjects to treatment and control groups randomly</u></i> - once the sample of participants
+            has
+            been decided upon, the subjects
+            should be divided into the treatment group and the control group randomly. Making random assignments of
+            subjects to treatments is an extremely critical step towards minimising bias in an experiment. Subjects must
+            be randomly assigned to groups by a third party and not allowed to choose which group they will be in. The
+            goal of random assignment is to create homogeneous groups, where any unusual characteristics have an equal
+            chance of appearing in any of the <nobr>groups.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.283-284]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li><i><u>Controlling for confounding variables</u></i> - a <b>confounding variable</b> is a variable or factor
+            that was
+            not controlled for in the study, but can have an influence on the results. Researchers try to control
+            for as many confounding variables as they can anticipate, trying to minimise their possible effect on the
+            response. In experiments involving human subjects, there are usually many confounding
+            variables. Some, such as timing, can be controlled for in the design of the study. But others depend totally
+            on the individual in the study. The ultimate control of subject-specific confounding variables is to use
+            pairs of people that are matched according to important variables, or to just record responses from the same
+            person twice:
+            once with/after the treatment and once without/before. This type of experiment is called a
+            <i>matched-pairs</i>
+            <nobr>design.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.285-286]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li><i><u>Respecting ethical issues</u></i> - some experiment designs that are theoretically possible are not
+            ethical in practice. For example,
+            forcing a subject to engage in a specific behaviour, such as smoking, to study adverse effects on
+            health. It is only possible to study people with a particular condition and work backwards to see what
+            factors may have caused it. But since it is impossible to control for historical confounding variables,
+            singling out
+            one particular cause becomes <nobr>difficult.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.286]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+            Although causes of diseases can't be determined ethically by conducting experiments, new
+            treatments
+            can be tested using experiments. Medical studies that involve experiments are called <b>medical trials</b>.
+            Serious experiments must pass an extensive series of tests that can take years to carry out. One reason the
+            cost of prescription drugs is so high is the massive amount of time and money needed to conduct research and
+            development of new drugs, most of which fail to pass the <nobr>tests.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.286-287]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li><i><u>Collecting good data</u></i> - there are three criteria when it
+            comes to evaluating <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+                href="{% url 'statistics101:qqdata' %}" {% endif %}>data</a> quality:
+            <i>reliability</i>, <i>validity</i> and <i>absence of bias</i>. Data is reliable if it is possible to get
+            repeatable results
+            with subsequent measurements. Unreliable data comes from unreliable measurement instruments (such as poor
+            calibration) or unreliable
+            data collection methods (such as ambiguous questions). Data is valid if it measures what it is supposed to
+            measure. Use of the appropriate measurement instrument is important. The data collected must be appropriate
+            for the goal of the study. Data is <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+                href="{% url 'statistics101:popsample' %}" {% endif %}>unbiased</a> if it contains no systematic errors
+            that either add or subtract
+            from the true values. Biased data is such that systematically over-measure or under-measure the true results.
+            Bias can be caused by instrument error, leading questions or preconceived expectations of the
+            <nobr>researchers.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.287-288]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li><i><u>Analyzing data properly</u></i> - the choice of analysis is just as important for the quality of the
+            results
+            as any other aspect of the study. A proper analysis should be planned in advance, during the design phase of
+            the study. The analysis has to legitimately and correctly answer the questions initially posed by the study.
+            Some basic types of statistical analyses (also known as <i>statistical inference</i>) include confidence
+            intervals, hypothesis tests and correlation, and regression <nobr>analyses.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.289]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li><i><u>Making appropriate conclusions</u></i> - the biggest mistakes made when drawing conclusions about the
+            studies are overstating results, making connections that are not backed up by the statistics and
+            generalising the results beyond the scope of the study, commonly onto a broader population than was
+            represented in the <nobr>sample.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.290-291]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+    </ul>
+    </p>
+</div>
+
+
+{% endblock %}

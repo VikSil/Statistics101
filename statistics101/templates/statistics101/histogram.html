@@ -1,0 +1,264 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Histogram</p>
+    </div>
+</div>
+
+<div class="page-body">
+    <p class="mb-1"><b>A histogram</b> is a graph that organises
+        and displays <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}#quantitative-data" {% endif %}>numerical
+            data</a>
+        in picture form. The bars
+        connect to each
+        other in a histogram, unlike the <a {% if 'barchart' in navigation.charts.links %} class="dark-link"
+            href="{% url 'statistics101:barchart' %}" {% endif %}>bar graph</a>. The height of each bar of a histogram
+        represents either the number
+        of data points
+        (<i>frequency</i>) or the percentage of data points (<i>relative frequency</i>) in each group. Each data point
+        from a data set falls into one and only one bar of the histogram. It is possible to make a histogram from any
+        numerical data set; however, it is not possible to determine the actual values of the data set from a
+        <nobr>histogram.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.108]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+
+        Histogram illustrates the shape of
+        numerical data- how data falls into groups, how many values are close
+        to or far from the <a {% if 'mean' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:mean' %}" {% endif %}>
+            mean</a>, where the <a {% if 'median' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:median' %}" {%endif %}>center</a>
+        is and how many outliers there are.
+        For example, all the data may be exactly the same (no variability),
+        in which case the
+        histogram is just one tall bar. Or the data might have an equal number in each group; in which case the shape is
+        flat and it means a fair amount of variability. The idea if a flat histogram indicating some variability may be
+        counter-intuitive, especially when confused with a <a {% if 'linechart' in navigation.charts.links %}
+            class="dark-link" href="{% url 'statistics101:linechart' %}" {% endif %}>time chart</a>, where single
+        numbers are plotted over time. But
+        histograms don't show data over time, they show all the data at the same point in <nobr>time.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.79,111,114]</sup>
+            {% endif %}{%endspaceless%}</nobr> Histogram is <b>not</b> about history. Equally, confusing is tha idea that
+        a
+        histogram
+        with a big lump in the middle and tails sloping sharply down on each side actually has less variability than a
+        histogram that is straight accross, The curves looking like hills in a histogram represent clumps of data that
+        are
+        close together; a flat histogram show data equally dispersed, with more variability. Variability in a histogram
+        is
+        higher when there are more bars of more equal height more spread out from the mean, and lower when there are
+        taller bars closer to the
+        <nobr>mean.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.114]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+
+    <p class="mb-0">There are no fixed rules for how to create a histogram; the person making the graph can choose the
+        grouping on the
+        x-axis as well as the scale and starting and ending points on the y-axis. However, not every choice is
+        appropriate; in
+        fact,
+        a histogram can be made to be misleading in several <nobr>ways:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.117,119,339]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li>If the interval of grouping of the numerical variable is
+            really small, there will be too many bars in the histogram; the data may be hard to interpret because the
+            heights of
+            the bars look more variable than they should be. On the other
+            hand, if the <a {% if 'percentiles' in navigation.stats.links %} class="dark-link"
+                href="{% url 'statistics101:percentiles' %}" {% endif %}>ranges</a> are really large, there
+            are
+            too
+            few bars and something interesting may be missed in the data.</li>
+        <li>The y-axis of a histogram shows how many individuals are in each group, using counts or percents. A
+            histogram can be misleading if it has a descriptive scale and/or inappropriate starting and ending points on
+            the y-axis. If it goes by large increments and has an ending point that is much higher than needed, there
+            will be a lot of white space above the histogram. The height of the bars will be squeezed down, making their
+            differences look more uniform than they should. If the scale goes by small increments and ends at the
+            smallest value possible, the bars become stretched vertically, exaggerating and suggesting bigger differences
+            than really exist.</li>
+        <li>If the vertical axis reports relative frequency, <a {% if 'popsample' in navigation.data.links %}
+                class="dark-link" href="{% url 'statistics101:popsample' %}" {% endif %}>sample size</a> must be
+            supplied along with the graph.</li>
+    </ul>
+    </p>
+
+
+    <p class="mb-0">Tips for setting up a histogram well <nobr>are:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.110]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li>Each data set requires different ranges for grouping, but ranges that are too wide or too narrow should be
+            avoided:
+            <ul>
+                <li>A histogram that has too wide ranges for its groups places all the data into a very small number of
+                    bars
+                    that make meaningful comparisons impossible.</li>
+                <li>A histogram that has too narrow ranges for its groups looks like a big series of tiny bars with no
+                    clear
+                    pattern.</li>
+            </ul>
+        </li>
+        <li>Groups should have equal width. If one bar is wider than the others, it may contain more data than it
+            should.
+        </li>
+        <li>Borderline data points should all be consistently put either into their respective lower bar or their
+            respective upper
+            bar.</li>
+        <li>Both x and y axis should have good descriptive labels to help with interpreting the histogram.</li>
+        <li>Since it is not possible to calculate measures of center and variability from the histogram without knowing
+            the
+            exact values, basic statistics of center and variation should be calculated and presented along with the
+            <nobr>histogram.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.115]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+
+    </ul>
+
+    </p>
+
+    <h4 class="subtitle">Skewness</h4>
+    <p class="mb-1">Data sets can have many different possible shapes. Three shapes that are commonly discussed in
+        introductory
+        statistics courses are right skewed, left skewed and symmetric <nobr>data.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.79]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+
+    <p class="mb-1"><b>Symmetric data</b> has about the same shape on either side of the middle. If cut down the middle
+        the left-hand
+        and the right-hand side resemble mirror images of each other.
+        When data is symmetric, the <a {% if 'mean' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:mean' %}" {% endif %}>
+            mean</a> and the <a {% if 'median' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:median' %}" {% endif %}>median</a> are close <nobr>together.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.79,111]</sup>
+            {% endif %}{%endspaceless%}</nobr> "Close" is defined in the context of the data; for example the numbers 50
+        and 55 are
+        said to be close if all the values lie between 0 and 1000, but are considered to be farther apart if all the
+        values lie between 49 and <nobr>56.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.116]</sup>
+            {% endif %}{%endspaceless%}</nobr> The "<i>tails</i>" on both sides of the graph are of
+        approximately equal length. As long
+        as the shape is approximately the same on both
+        sides, it is said to be symmetric, but not all
+        symmetric data has a bell shape of a normal <nobr>distribution.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.80]</sup>
+            {% endif %}{%endspaceless%}</nobr> Likewise, not all non-symetrical data is skewed to either direction; many
+        data sets
+        have no distinct shape at <nobr>all.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.113]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-1">Data is said to be <i>skewed to the right</i> if most of the data is on the left side of the
+        histogram, but a few
+        larger values are on the right. When the data is skewed right, the mean is larger than the median. The
+        "tail" on the right side of the graph is longer than on the <nobr>left.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.79]</sup>
+            {% endif %}{%endspaceless%}</nobr> In other words, the outliers on the right side skew (distort) the
+        histogram and
+        pull the mean towards larger values.</p>
+
+
+    <p>Data is said to be <i>skewed to the left</i> if most of the data is on the right side of the
+        histogram, but a few
+        smaller values are on the left. When the data is skewed left, the mean is smaller than the median. The
+        "tail" on the left side of the graph is longer than on the <nobr>right.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.79]</sup>
+            {% endif %}{%endspaceless%}</nobr> In other words, the outliers on the left side skew (distort) the
+        histogram and pull
+        the mean towards smaller values.</p>
+
+    <div class="page-section">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="histogram-nav" role="tablist">
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="histogram-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#histogram-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="histogram-proportions-tab" data-bs-toggle="tab"
+                    data-bs-target="#histogram-proportions" type="button" role="tab">Proportions</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="histogram-surveys-tab" data-bs-toggle="tab"
+                    data-bs-target="#histogram-surveys" type="button" role="tab">Surveys</button>
+            </li>
+        </ul>
+        <!-- Content -->
+        <div class="tab-content" id="histogram-pages">
+            <!-- Timeseries -->
+            <div class="tab-pane fade show active" id="histogram-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 chart-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-chartdiv="ts-histogram" data-chartarea="ts-plotly-charts" data-f="get_histogram">
+                        {{ts.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="ts-histogram">
+                        <div id="ts-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Proportions -->
+            <div class="tab-pane fade" id="histogram-proportions" role="tabpanel">
+                <div class="chart-section">
+                    {% for pr in proportions %}
+                    <button class="purple-pill me-2 chart-btn" id={{pr.sample_name}} data-sampleid={{pr.id}}
+                        data-chartdiv="pr-histogram" data-chartarea="pr-plotly-charts" data-f="get_histogram">
+                        {{pr.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="pr-histogram">
+                        <div id="pr-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Surveys -->
+            <div class="tab-pane fade" id="histogram-surveys" role="tabpanel">
+                <div class="chart-section">
+                    {% for sur in surveys %}
+                    <button class="purple-pill me-2 chart-btn" id={{sur.sample_name}} data-sampleid={{sur.id}}
+                        data-chartdiv="sur-histogram" data-chartarea="sur-plotly-charts" data-f="get_histogram">
+                        {{sur.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="sur-histogram">
+                        <div id="sur-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

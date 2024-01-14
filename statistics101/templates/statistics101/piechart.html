@@ -1,0 +1,151 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Pie Chart</p>
+    </div>
+</div>
+
+<div class="page-body">
+    <p class="mb-1"><b>Pie charts</b> along with <a {% if 'barchart' in navigation.charts.links %} class="dark-link"
+            href="{% url 'statistics101:barchart' %}" {% endif %}>bar graphs</a> are the most common types of
+        graphical representation for <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}#qualitative-data" {% endif %}>qualitative data</a>. It
+        takes categorical data and breaks it down by group, showing the percentage of data points that fall into each
+        group. Since a pie chart takes on a shape of a circle, the slices that represent each group can easily be
+        compared and contrasted. Each data point in a pie chart must fall into one and only one category, and the sum of
+        all slices should be
+        100% or close to it, subject to a bit of rounding error. Pie chart does not have to say how much each slice is,
+        only what percentage it is of the total, although absolute
+        values of slices and/or total are sometimes included as <nobr>well.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.96]</sup>
+            {% endif %}{%endspaceless%}</nobr> It is important to watch for totals when examining
+        a pie chart from a <a {% if 'surveys' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:surveys' %}" {% endif %}>survey</a>. The percentages of the pie chart
+        only apply to the people who were surveyed; how many the
+        results mimic the <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:popsample' %}" {% endif %}>population</a> depends on many factors,
+        one of which is <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:popsample' %}" {% endif %}>sample size</a>.
+        Without knowing the sample size it is impossible to tell how accurate the
+        information <nobr>is{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.98-99]</sup>
+            {% endif %}{%endspaceless%}</nobr> or which of several pie charts from several survey companies is the most
+        reliable.
+    </p>
+
+
+    <p class="mb-0">
+        The following tips help to evaluate a pie chart for statistical <nobr>correctness:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.100]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li>Checking that the percentages of all slices add up to 100% or very close to it- any round-off error should
+            be very small.</li>
+        <li>The "Other" slice of the pie chart should not be larger than many other slices.</li>
+        <li>The total number of units should be reported with the pie chart.</li>
+        <li>Three-dimensional pie charts should be avoided. They don't show the slices in their proper proportions- the
+            slices in front look larger than they should be.</li>
+    </ul>
+
+    </p>
+    <p class="mb-1">Ideally, a pie chart should not have too many slices, because a large number of slices distracts the
+        reader from
+        the main point(s) the pie chart is trying to relay. However, lumping many small remaining categories into one
+        slice of
+        "Other" that together is one of the largest in the whole pie chart, leaves the readers wondering what's included
+        in that particular <nobr>slice.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.96]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+    <p>Unlike a <a {% if 'barchart' in navigation.charts.links %} class="dark-link"
+            href="{% url 'statistics101:barchart' %}" {% endif %}>bar graph</a>, with a pie chart the scale cannot be
+        changed to over-emphasize or downplay the
+        results. No
+        matter how a pie chart is sliced up it is always a sliced up circle, and making the pie chart bigger or smaller
+        does not change the relative proportions of the <nobr>slices.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.105]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <div class="page-section">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="piechart-nav" role="tablist">
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="piechart-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#piechart-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="piechart-proportions-tab" data-bs-toggle="tab"
+                    data-bs-target="#piechart-proportions" type="button" role="tab">Proportions</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="piechart-surveys-tab" data-bs-toggle="tab"
+                    data-bs-target="#piechart-surveys" type="button" role="tab">Surveys</button>
+            </li>
+        </ul>
+        <!-- Content -->
+        <div class="tab-content" id="piechart-pages">
+            <!-- Timeseries -->
+            <div class="tab-pane fade show active" id="piechart-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 chart-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-chartdiv="ts-piechart" data-chartarea="ts-plotly-charts" data-f="get_piechart">
+                        {{ts.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="ts-piechart">
+                        <div id="ts-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Proportions -->
+            <div class="tab-pane fade" id="piechart-proportions" role="tabpanel">
+                <div class="chart-section">
+                    {% for pr in proportions %}
+                    <button class="purple-pill me-2 chart-btn" id={{pr.sample_name}} data-sampleid={{pr.id}}
+                        data-chartdiv="pr-piechart" data-chartarea="pr-plotly-charts" data-f="get_piechart">
+                        {{pr.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="pr-piechart">
+                        <div id="pr-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Surveys -->
+            <div class="tab-pane fade" id="piechart-surveys" role="tabpanel">
+                <div class="chart-section">
+                    {% for sur in surveys %}
+                    <button class="purple-pill me-2 chart-btn" id={{sur.sample_name}} data-sampleid={{sur.id}}
+                        data-chartdiv="sur-piechart" data-chartarea="sur-plotly-charts" data-f="get_piechart">
+                        {{sur.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="sur-piechart">
+                        <div id="sur-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

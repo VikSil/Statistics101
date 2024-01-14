@@ -1,0 +1,255 @@
+{% extends "statistics101/layout.html" %}
+{% load static %}
+
+<!-- References to page specific JS files -->
+{% block head_scripts %}
+{% load static %}
+<script src="{% static 'statistics101/js/userdata.js' %}"></script>
+{% endblock %}
+
+
+<!-- Main content of the page -->
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>User Data Sets</p>
+    </div>
+</div>
+
+<div class="page-body">
+    {% if user.is_authenticated %}
+
+    <div class="page-section">
+        <!-- Tabs  for user data retrieval -->
+        <ul class="nav nav-tabs" id="owned-nav" role="tablist">
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="owned-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#owned-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="owned-proportion-tab" data-bs-toggle="tab"
+                    data-bs-target="#owned-proportion" type="button" role="tab">Proportion</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="owned-survey-tab" data-bs-toggle="tab" data-bs-target="#owned-survey"
+                    type="button" role="tab">Survey</button>
+            </li>
+        </ul>
+
+        <!-- Content for user data retrieval-->
+        <div class="tab-content" id="owned-pages">
+            <!-- Timeseries data retrieval -->
+            <div class="tab-pane fade show active" id="owned-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 dataset-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-datadiv="#ts-dataset">
+                        {{ts.sample_name}}
+                    </button>
+                    <button type="button" class="purple-pill-small me-2 owned-dataset-delete" data-sampleid={{ts.id}}
+                        data-samplename={{ts.sample_name}} data-datadiv="ts-dataset">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path
+                                d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5">
+                            </path>
+                        </svg>
+                    </button>
+                    {% endfor %}
+
+                    <div id="ts-dataset">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <!-- Proportions data retrieval -->
+            <div class="tab-pane fade" id="owned-proportion" role="tabpanel">
+                <div class="chart-section">
+                    {% for pr in proportions %}
+                    <button class="purple-pill me-2 dataset-btn" id={{pr.sample_name}} data-sampleid={{pr.id}}
+                        data-datadiv="#pr-dataset">
+                        {{pr.sample_name}}
+                    </button>
+                    <button type="button" class="purple-pill-small me-2 owned-dataset-delete" data-sampleid={{pr.id}}
+                        data-samplename={{pr.sample_name}} data-datadiv="pr-dataset">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path
+                                d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5">
+                            </path>
+                        </svg>
+                    </button>
+                    {% endfor %}
+                    <div id="pr-dataset">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <!-- Surveys data retrieval -->
+            <div class="tab-pane fade" id="owned-survey" role="tabpanel">
+                <div class="chart-section">
+                    {% for sur in surveys %}
+                    <button class="purple-pill me-2 dataset-btn" id={{sur.sample_name}} data-sampleid={{sur.id}}
+                        data-datadiv="#sur-dataset">
+                        {{sur.sample_name}}
+                    </button>
+                    <button type="button" class="purple-pill-small me-2 owned-dataset-delete" data-sampleid={{sur.id}}
+                        data-samplename={{sur.sample_name}} data-datadiv="sur-dataset">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path
+                                d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5">
+                            </path>
+                        </svg>
+                    </button>
+                    {% endfor %}
+                    <div id="sur-dataset">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <p>In the section above you can view the data sets that belong to you.</p>
+        <p>In the section below you can upload new data sets. Please make sure to use the right tab and follow the
+            instructions closely. You can only upload one data set at a time. It has to be a .csv file. Maximum 6 sample
+            limit per user.</p>
+    </div>
+
+    <!-- Upload section -->
+    <div class="page-section">
+        <!-- Tabs for data upload -->
+        <ul class="nav nav-tabs" id="upload-nav" role="tablist">
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="upload-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#upload-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="upload-proportion-tab" data-bs-toggle="tab"
+                    data-bs-target="#upload-proportion" type="button" role="tab">Proportion</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="upload-survey-tab" data-bs-toggle="tab" data-bs-target="#upload-survey"
+                    type="button" role="tab">Survey</button>
+            </li>
+        </ul>
+        <!-- Content for data upload -->
+        <div class="tab-content" id="upload-pages">
+            <!-- Timeseries data upload -->
+            <div class="tab-pane fade" id="upload-timeseries" role="tabpanel">
+                <!-- Upload instructions - Timeseries -->
+                <div class="upload-instructions">
+                    <div class="upload-example">
+                        <p>Timeseries files must to be formatted like this:</p>
+                        <p><img src="{% static 'statistics101/images/TS_Format.png' %}"></p>
+                    </div>
+                    <div class="upload-example">
+                        <ul>
+                            <li>Don't use spaces</li>
+                            <li>File name is your sample name (must be unique)</li>
+                            <li>Timestams must be in format YYYY-MM-DD 24HH:MM:SS (ommited parts will be assumed at
+                                midnight on 1st of January)</li>
+                            <li>Use dot as the floating point separator</li>
+                        </ul>
+                    </div>
+                    <div class="upload-example">
+                        <p>Example:</p>
+                        <p><img src="{% static 'statistics101/images/TS_Example.png' %}"></p>
+                    </div>
+                </div>
+                <!-- Dropzone - Timeseries -->
+                <div class="mt-3">
+                    <form id="TimeseriesDropzone" class="dropzone" accept-charset="UTF-8"
+                        action="{% url  'statistics101:userdata'%}" method="POST">
+                        {% csrf_token %}
+                        <div class="dz-message">Click Here or Drop Files To Upload - 3MB
+                            maximum - one file at a time
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Proportions data upload -->
+            <div class="tab-pane fade" id="upload-proportion" role="tabpanel">
+                <!-- Upload instructions - Proportions -->
+                <div class="upload-instructions">
+                    <div class="upload-example">
+                        <p>Proportions files must to be formatted like this:</p>
+                        <p><img src="{% static 'statistics101/images/PR_Format.png' %}"></p>
+                    </div>
+                    <div class="upload-example">
+                        <ul>
+                            <li>Don't use spaces</li>
+                            <li>File name is your sample name (must be unique)</li>
+                            <li>All proportions for a group should sum up to
+                                100</li>
+                            <li>Use dot as the floating point separator</li>
+                        </ul>
+                    </div>
+                    <div class="upload-example">
+                        <p>Example:<br></p>
+                        <p><img src="{% static 'statistics101/images/PR_Example.png' %}"></p>
+                    </div>
+                </div>
+                <!-- Dropzone - Proportion -->
+                <div class="mt-3">
+                    <form id="ProportionDropzone" class="dropzone" accept-charset="UTF-8"
+                        action="{% url  'statistics101:userdata'%}" method="POST">
+                        {% csrf_token %}
+                        <div class="dz-message">Click Here or Drop Files To Upload - 3MB
+                            maximum - one file at a time
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Surveys data upload -->
+            <div class="tab-pane fade" id="upload-survey" role="tabpanel">
+                <!-- Upload instructions - Surveys -->
+                <div class="upload-instructions">
+                    <div class="upload-example">
+                        <p>Survey data files must to be formatted like this:</p>
+                        <p><img src="{% static 'statistics101/images/SUR_Format.png' %}"></p>
+                    </div>
+                    <div class="upload-example">
+                        <ul>
+                            <li>Don't use spaces</li>
+                            <li>File name is your sample name (must be unique)</li>
+                            <li>Use dot as the floating point separator</li>
+                        </ul>
+                    </div>
+                    <div class="upload-example">
+                        <p>Example:</p>
+                        <p><img src="{% static 'statistics101/images/SUR_Example.png' %}"></p>
+                    </div>
+                </div>
+                <!-- Dropzone - Survey -->
+                <div class="mt-3">
+                    <form id="SurveyDropzone" class="dropzone" accept-charset="UTF-8"
+                        action="{% url  'statistics101:userdata'%}" method="POST">
+                        {% csrf_token %}
+                        <input type='hidden' name='survey'>
+                        <div class="dz-message">Click Here or Drop Files To Upload - 3MB
+                            maximum - one file at a time
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- If user is not authorised - display a message and links to login and register pages -->
+    {% else %}
+    <p>This page is only available for registered users.</p>
+    <p class="mt-3">Already have an account? <a href="{% url 'statistics101:login' %}" class="dark-link">Log
+            In here.</a></p>
+    <p class="mt-3">Don't have an account? <a href="{% url 'statistics101:register' %}" class="dark-link">Register
+            here.</a></p>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}

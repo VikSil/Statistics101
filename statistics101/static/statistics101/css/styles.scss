@@ -1,0 +1,344 @@
+/*!  Site colorscheme */
+
+$plumlight: #cdb3d6;
+$plumpurple: #6a4d83;
+$plumdark: #422543;
+$plumred: #7d3a5b;
+$plumgreen: #a4ad9a;
+$plumpink: #fdeafb;
+
+@import "../../../../node_modules/bootstrap/scss/_functions";
+@import "../../../../node_modules/bootstrap/scss/_variables";
+
+$color-palette: (
+  "plumlight": $plumlight,
+  "plumpurple": $plumpurple,
+  "plumdark": $plumdark,
+  "plumred": $plumred,
+  "plumgreen": $plumgreen,
+  "plumpink": $plumpink,
+);
+
+/*! Merge colorscheme into Bootstrap */
+
+$theme-colors: map-merge($color-palette, $theme-colors);
+
+//import bootstrap distributable;
+@import "../../../../node_modules/bootstrap/scss/bootstrap";
+
+/*! Floating menu */
+
+.offcanvas {
+  --bs-offcanvas-width: none;
+}
+
+.accordion {
+  --bs-accordion-btn-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='rgb(253,234,251)'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='rgb(253,234,251)'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  --bs-accordion-border-color: #422543;
+  --bs-accordion-icon-active-color: #fdeafb;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.nav {
+  --bs-nav-link-color: #cdb3d6;
+  --bs-nav-link-hover-color: #7d3a5b;
+}
+
+.nav-tabs {
+  --bs-nav-tabs-border-color: #6a4d83;
+  --bs-nav-tabs-link-hover-border-color: #cdb3d6;
+  --bs-nav-tabs-link-active-color: #422543;
+  --bs-nav-tabs-link-active-bg: #fdeafb;
+  --bs-nav-tabs-link-active-border-color: #6a4d83 #6a4d83 #fdeafb;
+}
+
+.undecorated-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.undecorated-link:hover {
+  text-decoration: underline;
+  color: #cdb3d6;
+}
+
+/*! All tables on the website - Statistics and Data Sets */
+
+.table {
+  --bs-table-bg: #fdeafb;
+  --bs-table-hover-bg: rgba(205, 179, 214, 0.3);
+}
+
+table {
+  @extend .table;
+  @extend .mb-0;
+  @extend .table-hover;
+  @extend .table-bordered;
+  @extend .border-plumpurple;
+  width: auto;
+}
+
+th {
+  --bs-table-bg: #7d3a5b;
+  --bs-table-color: #fdeafb;
+  text-align: center;
+}
+
+/*! Dropzone in User Data section */
+
+.dropzone {
+  border: 2px solid $plumred !important;
+  background: $plumlight !important;
+}
+
+.dz-image {
+  background: $plumpink !important;
+}
+
+.dz-details {
+  color: $plumpurple !important;
+}
+
+/*! Major divs */
+
+.page-header {
+  @extend .d-flex;
+  @extend .justify-content-center;
+  @extend .text-plumdark;
+  @extend .fs-1;
+  @extend .fw-bolder;
+  @extend .mt-3;
+}
+
+.page-body {
+  @extend .mt-3;
+  @extend .px-5;
+  text-align: justify;
+}
+
+.page-section {
+  @extend .border;
+  @extend .border-plumpurple;
+  @extend .p-3;
+  @extend .my-2;
+}
+
+.subtitle {
+  @extend .mt-4;
+  @extend .mb-1;
+  @extend .text-plumred;
+  font-weight: 500;
+}
+
+/*! Chart formatting */
+
+.chart-section {
+  @extend .border;
+  @extend .border-plumpurple;
+  @extend .border-end-0;
+  @extend .border-bottom-0;
+  @extend .border-start-0;
+  @extend .px-3;
+  @extend .pt-3;
+  @extend .mt-2;
+}
+
+/*! Formula formatting */
+
+.MathJax_Display {
+  display: inline !important;
+  @extend .text-center;
+  @extend .text-md-end;
+  @extend .text-lg-end;
+  @extend .text-xl-end;
+  @extend .text-xxl-end;
+}
+
+.formula {
+  @extend .d-flex;
+  @extend .flex-column;
+  @extend .flex-md-row;
+  @extend .flex-lg-row;
+  @extend .flex-xl-row;
+  @extend .flex-xxl-row;
+  @extend .justify-content-center;
+}
+
+.formula-maths {
+  @extend .d-flex;
+  @extend .col-md-6;
+  @extend .col-lg-6;
+  @extend .col-xl-6;
+  @extend .col-xxl-6;
+  @extend .align-items-center;
+  @extend .mx-2;
+}
+
+.formula-desc {
+  @extend .mx-2;
+  @extend .d-flex;
+  @extend .col-md-6;
+  @extend .col-lg-6;
+  @extend .col-xl-6;
+  @extend .col-xxl-6;
+  @extend .justify-content-center;
+  @extend .justify-content-md-start;
+  @extend .justify-content-lg-start;
+  @extend .justify-content-xl-start;
+  @extend .justify-content-xxl-start;
+  @extend .align-items-center;
+  font-size: smaller;
+}
+
+/*! Controls in tabs in Statistics, Charts and Data Sets */
+
+li {
+  margin-left: 30px;
+}
+
+ul {
+  @extend .mb-1;
+}
+
+.tabulation {
+  @extend .nav-item;
+  margin-left: 0px;
+}
+
+.purple-pill {
+  @extend .btn;
+  @extend .rounded-pill;
+  @extend .border;
+  @extend .mt-2;
+  @extend .border-plumpurple;
+  min-width: 100px;
+}
+
+.purple-pill-small {
+  @extend .btn;
+  @extend .rounded-pill;
+  @extend .border;
+  @extend .mt-2;
+  @extend .border-plumpurple;
+  min-width: 50px;
+}
+
+.purple-pill:hover {
+  background-color: #7d3a5b;
+  color: #cdb3d6;
+}
+
+.owned-dataset-delete:hover {
+  color: #7d3a5b;
+  @extend .border-plumred;
+}
+
+.upload-instructions {
+  @extend .d-flex;
+  @extend .flex-column;
+  @extend .flex-xxl-row;
+  @extend .justify-content-evenly;
+  @extend .flex-wrap;
+  @extend .flex-xxl-nowrap;
+}
+
+.upload-example {
+  @extend .d-flex;
+  @extend .flex-column;
+  @extend .align-items-center;
+  @extend .justify-content-center;
+  @extend .flex-shrink-1;
+  @extend .m-2;
+}
+
+.upload-example ul {
+  padding-inline-start: 0px;
+}
+
+/*! All links in webpage bodies */
+
+.dark-link {
+  color: $plumred;
+}
+
+/*! Forms */
+
+.form-control {
+  border-color: #6a4d83;
+}
+
+.form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #7d3a5b;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(125, 58, 91, 0.25);
+}
+
+.form-error {
+  @extend .mb-2;
+  color: $plumred;
+  font-weight: 800;
+}
+
+/*! Dynamic responses to screen size */
+
+@include media-breakpoint-only(lg) {
+  .page-body {
+    font-size: 3vw;
+  }
+}
+@include media-breakpoint-only(md) {
+  .page-header {
+    font-size: 5vw;
+  }
+  .page-body {
+    font-size: 3.5vw;
+  }
+  .purple-pill {
+    font-size: 3.5vw;
+  }
+}
+@include media-breakpoint-only(sm) {
+  .page-header {
+    font-size: 5vw;
+  }
+  .page-body {
+    font-size: 4vw;
+  }
+  .purple-pill {
+    font-size: 4vw;
+  }
+}
+@include media-breakpoint-down(sm) {
+  .page-header {
+    font-size: 6vw;
+  }
+  .page-body {
+    font-size: 5vw;
+  }
+  .purple-pill {
+    font-size: 5vw;
+  }
+  .accordion-header {
+    font-size: 13vw !important;
+  }
+  .accordion-button {
+    font-size: 13vw !important;
+  }
+  .nav-link {
+    font-size: 7vw;
+  }
+}
+
+@include media-breakpoint-only(xs) {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}

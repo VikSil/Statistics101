@@ -1,0 +1,215 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Population & Sample</p>
+    </div>
+</div>
+
+
+<div class="page-body">
+
+    <p class="mb-1">For virtually any question you may want to investigate about the world, you have to focus on a
+        particular group of individuals (for example, a group of people, a group of other animals, cities, rock
+        specimens, exam scores etc.). The group of individuals being studied in order to answer research question is
+        called a <nobr><b>population</b>.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.51-52]</sup>
+            {% endif %}{%endspaceless%}</nobr> If <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}" {% endif %}>data</a> is collected from the entire population, that
+        process is called a
+        <nobr><b>census</b>.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.54]</sup>
+            {% endif %}{%endspaceless%}</nobr> Studies don't
+        usually have time or money to
+        gather data on every single individual in a population.
+        To find out something about a population, researchers select a subset of individuals from the population, study
+        those individuals and use the information gathered to draw conclusions about the whole population. This subset
+        of
+        the population is called a <nobr><b>sample</b>.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.52]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-1">A <b>parameter</b> is a single number that describes a population, for example, the median household
+        income in a
+        country. A <b>statistic</b> is a single number that describes
+        a sample, for example, the <a {% if 'median' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:median' %}" {% endif %}>median</a>
+        household income
+        in a sample of 1200 <nobr>households.{%spaceless%} {% if source_1 %}
+            <sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.203]</sup>
+            {% endif %}{%endspaceless%}
+        </nobr> The parameters of a population are usually unknown, so data is collected on a sample
+        from the population, the results from the sample are analysed and conclusions are
+        made regarding the entire population based on the sample <nobr>results.{%spaceless%}{% if source_1 %}<sup>[<a
+                    target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.18]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <h4 class="subtitle" id="bias">Sample size</h4>
+
+    <p class="mb-1"><b>Sample size</b> is the final number of individuals
+        in the study, the final size of <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}" {% endif %}>data
+            <nobr>set
+        </a>.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.2]</sup>
+        {% endif %}{%endspaceless%}</nobr>
+        Sample size is commonly denoted by letter "<b>n</b>". Sample size
+        is an important factor in determining the accuracy and
+        repeatability of the <nobr>results.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.42]</sup>
+            {% endif %}{%endspaceless%}</nobr> With a large population of thousands, it is the size of the sample, not
+        the size of
+        the population that
+        determines the accuracy of the results. For example, a random sample of 1000 individuals, has the estimated
+        accuracy level of 3,2 percentage points, no matter whether the sample is from a small town of 10 000
+        individuals, a region of 1 million people or the entire <nobr>country.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.268]</sup>
+            {% endif %}{%endspaceless%}</nobr> Many <a {% if 'surveys' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:surveys' %}" {% endif %}>surveys</a> are based on
+        large numbers of participants, but this isn't always true for other types of research, such as carefully
+        controlled experiments. Because of the high
+        cost of some types of research in terms of time and money, some
+        studies are based on small number of participants. Researchers have to find the appropriate balance when
+        determining sample <nobr>size.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.42]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-1">It is important to realize that sample results will vary from sample to sample. Statistical results
+        based on
+        samples should include a measure of how those results are expected to <nobr>vary.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.171]</sup>
+            {% endif %}{%endspaceless%}</nobr> That is to say that samples themselves will have a distribution of
+        possible results.
+        Statistical results are evaluated by measuring their accuracy, typically through the margin of error. The
+        <b>margin
+            of error</b> reflects how much the results are expected to vary from sample to <nobr>sample.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.341]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-0"> The two most important ideas regarding sample size and margin of error are the
+        <nobr>following:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.197]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li>Sample size and margin of error have an inverse relationship.</li>
+        <li>After a point, increasing sample size gives diminishing return on increasing confidence level.</li>
+    </ul>
+    </p>
+
+    <p class="mb-1">Having an inverse relationship means that as the sample size increases, the margin of error
+        decreases. This
+        relationship is called an inverse because the two move in opposite directions. The more information is gathered,
+        the more accurate the results will be, given that the data is gathered and handled <nobr>properly.
+            {%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.198]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-1">The relationship between the margin of error and sample size is non-linear, hence increasing the
+        sample size has
+        diminishing returns. For example, for the same confidence level of 95% and sample proportion p̂=0.52, increasing
+        the sample size from 500 to 1000 to 1500 and 2000 will decrease the margin of error from 4.38% to 3.10 to 2.53%
+        and 2.19% respectively. The extra cost of increasing the number of data points (i.e. have more participants
+        in the study, survey more people etc.) to achieve the small improvement of margin of error may not
+        be worthwhile at some <nobr>point.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.198]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+
+    <h4 class="subtitle" id="bias">Bias & Randomisation</h4>
+    <p class="mb-1"><b>Bias</b> is the systematic favouritism [intended or accidental] of certain types or groups of
+        individuals or
+        certain <nobr>responses.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.14]</sup>
+            {% endif %}{%endspaceless%}</nobr> Bias can occur due to the way a sample was selected or due to the way
+        data is
+        <nobr>collected.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.55]</sup>
+            {% endif %}{%endspaceless%}</nobr> If the method for selecting a sample data points from a population is
+        biased,
+        then the results will also be biased. Within the field of statistics it is not possible to measure bias; it is
+        only possible to minimise it by
+        designing good samples and <nobr>studies.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.209]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-0">Some of the most common sources of bias <nobr>are:{%spaceless%}{% if source_1 %}<sup>[<a
+                    target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.340]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li>Bad study design.</li>
+        <li>Selection of a sample that does not represent the population of interest.</li>
+        <li>Miscalibration of the measurement instrument.</li>
+        <li>Lack of objectivity on the part of the researchers.</li>
+    </ul>
+    </p>
+
+
+    <p class="mb-1">To minimise bias in a study the sample needs to be selected randomly. Sample selection is unbiased
+        if every
+        possible sample of equal size has an equal chance to
+        be selected for the <nobr>study.{%spaceless%}{% if source_1 %}
+            <sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.49]</sup>
+            {% endif %}{%endspaceless%}
+        </nobr>
+        To take an authentic random sample, a randomisation mechanism is needed to select the individuals. An example of
+        random sampling involves the use of random number generators. In this process the items in the sample are chosen
+        using a computer generated list of random numbers, where each sample of items has the same chance of being
+        <nobr>selected.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.53]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+        Note that in designing an <a {% if 'experiments' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:experiments' %}" {% endif %}>experiment</a>,
+        collecting a random sample of individuals to participate often isn't ethical because experiments impose a
+        treatment on the <nobr>subjects.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.13]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+        Such type of studies are conducted using subjects that volunteer to participate, they self-select. But
+        randomness can be incorporated in experiments in a different way - by randomly assigning the subjects to the
+        treatment group and the control group. If the groups are assigned at random, they have a good chance at being
+        similar, except for the treatment they receive. That way, if a large enough difference is found in the outcomes
+        for the groups, it can be attributed to the treatment, rather than to other <nobr>factors.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.341]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <P class="mb-1">Both the quality and the quantity of information is important in assessing how accurate a statistic
+        will be. The
+        more good data goes into a statistic, the more accurate that statistic will be. Small sample sizes make results
+        less accurate (unless the population is small to begin with). However, more data isn't always better data - it
+        depends on how well the data was collected. A small random sample with well collected data is much better than a
+        large non-random sample with poorly collected <nobr>data.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.342]</sup>
+            {% endif %}{%endspaceless%}</nobr> No matter how large a sample is, if it is based on non-random methods,
+        the result
+        will not represent the
+        population. A small random sample is more representative than a large non-random <nobr>one.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.54]</sup>
+            {% endif %}{%endspaceless%}</nobr> Sample size should always be reported along with the results of any
+        study.</P>
+
+</div>
+
+
+{% endblock %}

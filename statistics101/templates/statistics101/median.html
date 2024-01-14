@@ -1,0 +1,125 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+
+
+<div class="page-body">
+
+    <div class="page-header">
+        <p>Median</p>
+    </div>
+
+
+    <p class="mb-0"><b>Median</b> in an <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}#quantitative-data" {% endif %}>numerical data</a> set is the point at
+        which there is an equal number of data points
+        on either side of the median value, when the data has been ordered. In a data set that contains outliers
+        median is more representative of the
+        center of the data set than the <a {% if 'mean' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:mean' %}" {% endif %}>mean</a> is. Median is denoted
+        by capital Latin letter "<b>M</b>" or Latin letter "<b>x&#771;</b>"
+        with
+        a tilde over
+        it. The steps for finding median of a data set <nobr>are:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.78]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+    <ol class="mb-1">
+        <li>Order the numbers from smallest to largest.</li>
+        <li>If the data set contains an odd number of elements, median is the number exactly in the middle.</li>
+        <li>If the data set contains an even number of elements, median is the average of the two elements in the
+            middle.</li>
+    </ol>
+
+    <p>
+        Unlike the<a {% if 'mean' in navigation.stats.links %} class="dark-link" href="{% url 'statistics101:mean' %}"
+            {% endif %}></a>
+        mean</a>, median is not affected by outliers,
+        i.e. it is not affected by the values of the data
+        points,
+        only
+        their location within the data set. If a
+        statistic is not affected by
+        a certain characteristic of
+        data, it is said to be "<i>resistant</i>" to that characteristic. In this case, median is resistant to
+        <nobr>outliers.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.80,114]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <div class="page-section">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="median-nav" role="tablist">
+            {% if timeseries %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="median-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#median-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            {% endif %}
+            {% if proportions %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="median-proportion-tab" data-bs-toggle="tab"
+                    data-bs-target="#median-proportion" type="button" role="tab">Proportion</button>
+            </li>
+            {% endif %}
+            {% if surveys %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="median-survey-tab" data-bs-toggle="tab" data-bs-target="#median-survey"
+                    type="button" role="tab">Survey</button>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- Content -->
+        <div class="tab-content" id="median-pages">
+            <!-- Timeseries -->
+            <div class="tab-pane fade show active" id="median-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 statistics-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-datadiv="#ts-median" data-f="get_median">
+                        {{ts.sample_name}}
+                    </button>
+                    {% endfor %}
+
+                    <div id="ts-median">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <!-- Proportions -->
+            <div class="tab-pane fade" id="median-proportion" role="tabpanel">
+                <div class="chart-section">
+                    {% for pr in proportions %}
+                    <button class="purple-pill me-2 statistics-btn" id={{pr.sample_name}} data-sampleid={{pr.id}}
+                        data-datadiv="#pr-median" data-f="get_median">
+                        {{pr.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="pr-median">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <!-- Surveys -->
+            <div class="tab-pane fade" id="median-survey" role="tabpanel">
+                <div class="chart-section">
+                    {% for sur in surveys %}
+                    <button class="purple-pill me-2 statistics-btn" id={{sur.sample_name}} data-sampleid={{sur.id}}
+                        data-datadiv="#sur-median" data-f="get_median">
+                        {{sur.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="sur-median">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

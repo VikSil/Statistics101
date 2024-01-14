@@ -1,0 +1,172 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Boxplot</p>
+    </div>
+</div>
+
+<div class="page-body">
+    <p class="mb-1"><b>A boxplot</b> (also called a <i>box-and-whisker <nobr>plot</i>{%spaceless%}
+        {% if source_11 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_11}}</a>]</sup>
+        {% endif %}{%endspaceless%})</nobr> is a one-dimensional
+        graph based on the <a {% if 'percentiles' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:percentiles' %}" {% endif %}>five-number summary</a>,
+        which includes
+        the minimum value, the 25th percentile
+        (known as Q<sub>1</sub>), the <a {% if 'median' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:median' %}" {% endif %}>median</a>, the 75th percentile
+        (known as Q<sub>3</sub>), and the maximum value. These five descriptive statistics divide the data set into four
+        parts; each part contains 25% of the data. Boxplot can be vertical with the values on the axis ordered from
+        bottom (lowest) to top
+        (highest); or horizontal, with values on the axis going from left (lowest) to right <nobr>
+            (highest).{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.120-121]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-0">The following are steps to forming a box <nobr>plot:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.120]</sup>
+            {% endif %}{% if source_12 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_12}}</a>]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ol>
+        <li>Calculate the <a {% if 'percentiles' in navigation.stats.links %} class="dark-link"
+                href="{% url 'statistics101:percentiles' %}" {% endif %}>five-number summary</a> of the data set.</li>
+        <li>Create a vertical or horizontal number line with scale that includes the numbers in the five-number summary
+            and uses appropriate untits of equal distance from each other.</li>
+        <li>Plot a symbol or draw a line at the median.</li>
+        <li>Draw a box between the Q<sub>1</sub> and Q<sub>3</sub>.</li>
+        <li>Determine whether or not outliers are present. To make this determination,
+            calculate <a {% if 'percentiles' in navigation.stats.links %} class="dark-link"
+                href="{% url 'statistics101:percentiles' %}" {% endif %}>interquartile range</a> and multiply it by 1.5.
+            Add this amount to the value of Q<sub>3</sub> and subtract this value from the value of Q<sub>1</sub>. Any
+            data points that fall
+            outside of this boundary are outliers.
+            <ul>
+                <li>If there are no outliers draw a line from the minimum value in the data set to the edge of the box
+                    at Q<sub>1</sub>, and
+                    draw another line from the maximum value in the data set to the edge of the box at Q<sub>3</sub>.
+                </li>
+                <li>If there are outliers draw a line from the edge of the box at Q<sub>1</sub> to the smallest value
+                    that is not an outlier, and
+                    draw another line from the edge of the box at Q<sub>3</sub> to the greatest value that is not an
+                    outlier. Mark outliers with
+                    a separate symbol.
+                </li>
+            </ul>
+        </li>
+    </ol>
+    </p>
+
+    <p class="mb-1">Similar to a <a {% if 'histogram' in navigation.charts.links %} class="dark-link"
+            href="{% url 'statistics101:histogram' %}" {% endif %}>histogram</a>, a boxplot gives information regarding
+        the shape, center and variability of the data set.
+        Boxplots differ from histograms in terms of their strengths and weaknesses, most notably how outliers are
+        handled. A boxplot can show whether a data set is <a {% if 'histogram' in navigation.charts.links %}
+            class="dark-link" href="{% url 'statistics101:histogram' %}" {% endif %}>symmetric</a> (roughly the same on
+        each side when cut down the
+        middle) or skewed (lopsided). Skewed data
+        has a boxplot where the median cuts the box into two unequal pieces. If the longer part of the box is to the
+        righ (or above) the <a {% if 'median' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:median' %}" {% endif %}>median</a>, the data is said to be skewed right. If the
+        longer part is on the left (or
+        below) the median, the data is skewed left. A symmetric data set shows the median roughly in the middle of
+        the box. Although the boxplot displays whether a data set is symmetric, it doesn't display the shape of the
+        symmetry the way a histogram <nobr>can.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.122]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-1">It is a common mistake to associate the size of the box in a boxplot with the amount of data in the
+        data set. If
+        one side of a boxplot is longer than the
+        other (the data is skewed), it does not mean that side contains more
+        data. It is not possible to tell the <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:popsample' %}" {% endif %}>sample size</a> by looking at a boxplot; it is based
+        on percentages, not
+        counts.
+        Each section of the boxplot always contains 25% of the data. If one section is wider than another, it indicates
+        a </a>
+        and <a {% if 'percentiles' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:percentiles' %}" {% endif %}>wider range</a> in the values of data in that
+        section, i.e. the data is more spread out. A smaller section of the
+        boxplot indicates that the data is more condensed together. The boxplot just marks off the places in the data
+        set that separate those <nobr>sections.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.122,126]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p>Another common error involves <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:popsample' %}" {% endif %}>sample size</a>. A box-plot is a one-dimensional
+        graph with only one axis representing
+        the variable being measured. There is no second axis to indicate how many data points are in each group. In
+        two boxplots, one with very long box and the other with a very short one, it does not mean that the longer one
+        has more data in it. The length of the box represents the variability of the data, not the number of data
+        values. The sample size should be indicated as part of the title of the <nobr>boxplot.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.126]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <div class="page-section">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="boxplot-nav" role="tablist">
+            {% if timeseries %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="boxplot-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#boxplot-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            {% endif %}
+            {% if surveys %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="boxplot-surveys-tab" data-bs-toggle="tab" data-bs-target="#boxplot-surveys"
+                    type="button" role="tab">Surveys</button>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- Content -->
+        <div class="tab-content" id="boxplot-pages">
+            <!-- Timeseries -->
+            <div class="tab-pane fade show active" id="boxplot-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 chart-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-chartdiv="ts-boxplot" data-chartarea="ts-plotly-charts" data-f="get_boxplot">
+                        {{ts.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="ts-boxplot">
+                        <div id="ts-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Surveys -->
+            <div class="tab-pane fade" id="boxplot-surveys" role="tabpanel">
+                <div class="chart-section">
+                    {% for sur in surveys %}
+                    <button class="purple-pill me-2 chart-btn" id={{sur.sample_name}} data-sampleid={{sur.id}}
+                        data-chartdiv="sur-boxplot" data-chartarea="sur-plotly-charts" data-f="get_boxplot">
+                        {{sur.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="sur-boxplot">
+                        <div id="sur-plotly-charts">
+                            {% include 'statistics101/chart.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

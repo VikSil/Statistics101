@@ -1,0 +1,253 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Observational Studies</p>
+    </div>
+</div>
+
+<div class="page-body">
+
+    <p class="mb-0"><b>Surveys</b> are most common observational study. An observational
+        study is one in which <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:qqdata' %}" {% endif %}>data</a> is
+        collected on individuals in a way that doesn't affect
+        <nobr>them.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.11]</sup>
+            {% endif %}{%endspaceless%}</nobr> No intervention takes place, no changes are introduced and no
+        restrictions or
+        controls are <nobr>imposed.{%spaceless%}{% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.276]</sup>
+            {% endif %}{%endspaceless%}</nobr> A survey collects data through questions and answers. It is used to
+        gather information about opinions,
+        behaviors, demographics, lifestyles and other reportable
+        characteristics of the <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:popsample' %}" {% endif %}>population</a> of
+        interest.
+        Statisticians don't make a clear distinction between the two, but people typically call a short
+        survey with only a few questions a <nobr><i>poll</i>.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.258]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-0">The purpose of the survey is to answer questions about a target population. The target population is
+        the entire
+        group of individuals that the researchers are interested in drawing conclusions <nobr>about.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.263]</sup>
+            {% endif %}{%endspaceless%}</nobr> In most situations,
+        surveying the entire target population is impossible due to time and funding restraints. Many potential problems
+        arise from the fact that it is usually impossible
+        to survey
+        everyone in the entire target <nobr>population.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.263]</sup>
+            {% endif %}{%endspaceless%}</nobr> Observational studies
+        can't control for <a {% if 'experiments' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:experiments' %}" {% endif %}>confounding variables</a>, so their
+        results are not as significantly
+        meaningful as the results of a well-designed <a {% if 'experiments' in navigation.stats.links %}
+            class="dark-link" href="{% url 'statistics101:experiments' %}" {% endif %}>experiments</a> are. In
+        cases where an experiment is not possible, the
+        observational study must be based on a large enough <a {% if 'popsample' in navigation.data.links %}
+            class="dark-link" href="{% url 'statistics101:popsample' %}" {% endif %}>sample</a> that represents a
+        cross-section of the population.
+        Opinions of
+        the people who respond to a survey can be very different from the opinions of people who don't. In
+        general, the lower the response rate, the less credible the results <nobr>are.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.44]</sup>
+            {% endif %}{%endspaceless%}</nobr> Self-reported surveys
+        can be a real source of <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:popsample' %}" {% endif %}>bias</a> and can yield
+        misleading <nobr>statistics.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.30]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-0">One common source of <a {% if 'histogram' in navigation.charts.links %} class="dark-link"
+            href="{% url 'statistics101:histogram' %}" {% endif %}>skewed</a> survey results comes from
+        wording of the questions. However, not all surveys are
+        written with
+        the purpose of finding the truth; many are written to support a certain viewpoint. Even small changes in wording
+        affect survey outcomes, leading to results that conflict when different surveys are compared. If you can tell
+        from
+        the wording of the question how they want you to respond to it, you are looking at a leading question;
+        and leading questions lead to biased <nobr>results.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.43,44]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-1">Compared to other types of studies, such as medical experiments, some surveys can be relatively easy
+        to conduct.
+        They provide quick results and can often make interesting headlines in <nobr>newspapers.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.258]</sup>
+            {% endif %}{%endspaceless%}</nobr> The topics of many surveys are driven by current events, issues and areas
+        of interest. Timeliness and relevance
+        to the public are two of the most attractive qualities of any survey. Whereas some surveys are just
+        fun to look at and think about, other surveys can have direct impact on people's lives. These life-decision
+        surveys need to be closely scrutinised before any action is taken or important decisions are made based on them.
+        Surveys can [and should] cause politicians to change or create new laws, motivate more research studies,
+        encourage manufacturers to invent new products or change business policies and practices, and influence people's
+        behaviour and opinions. But some survey results are more valid and acurate than others. [Most governments],
+        national polling and research
+        organisations, as well as journals that are peer-reviewed, are the more credible
+        sources. Before taking action or making decisions based on survey results, it is important to determine whether
+        those results are credible, reliable and <nobr>believable.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.260-262]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-0">
+        A survey process can be broken down into a series of ten steps, each of which has it own challenges, and all of
+        which are critical in terms of producing survey results that are fair and <nobr>accurate.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.262]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+        </nobr>
+    <ol>
+        <li>
+            <i><u>Clarifying the purpose of the survey</u></i> - the more specific the purpose of the survey is, the
+            easier it
+            is to design questions that meet the objectives of the study, and the easier it is to report the
+            <nobr>results.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.263]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+
+        </li>
+        <li>
+            <i><u>Defining the target population</u></i> - the
+            definition of the target <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+                href="{% url 'statistics101:popsample' %}" {% endif %}>population</a> has to be clear,
+            because it
+            helps in selecting the proper <a {% if 'popsample' in navigation.data.links %} class="dark-link"
+                href="{% url 'statistics101:popsample' %}" {% endif %}>sample</a> and avoiding overgeneralisation of the
+            <nobr>results.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.264]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li>
+            <i><u>Choosing the type and timing of the survey</u></i> - the type of survey should be chosen that is most
+            appropriate for the target population, in terms of getting the
+            most truthful and informative <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+                href="{% url 'statistics101:qqdata' %}" {% endif %}>sample</a> possible.
+            Not every type of surveys
+            are appropriate for every
+            situation. Timing is also important. Current events shape people's opinions and willingness to engage with
+            the survey. Improper timing can lead to <nobr><a {% if 'popsample' in navigation.data.links %}
+                    class="dark-link" href="{% url 'statistics101:popsample' %}" {% endif %}>bias</a>.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.264-265]</sup>
+                {% endif %}{%endspaceless%}</nobr> Funding will place additional limitations on how the survey can be
+            carried out.
+        </li>
+        <li>
+            <i><u>Designing the introduction with ethics in mind</u></i> - serious surveys need to provide information
+            to participants pertaining to important ethical issues. They should include a cover letter that
+            explains all of
+            the important aspects of participation. For some institutions, surveys have to be approved in advance by a
+            committee designated to review, regulate and/or monitor the research for ethical, scientific and regulatory
+            <nobr>compliance.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.265]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li>
+            <i><u>Formulating the questions</u></i> - the way that the questions are asked can make a huge difference in
+            the
+            quality of data that will be collected. One of the single most common sources of bias in surveys is the
+            wording of the questions. <b>Leading questions</b>, also called <b>misleading questions</b> are questions
+            that are designed to
+            favour a certain response over <nobr>another.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.265]</sup>
+                {% endif %}{%endspaceless%}</nobr> Since the purpose of a [scientific] survey is purely to collect
+            information rather
+            than to
+            influence or persuade the respondent, the questions should be worded in a neutral and informative way in
+            order to minimise <nobr>bias.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.266]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        <li>
+            <i><u>Selecting the sample</u></i> - a good sample is such that represents the target population, is
+            selected
+            randomly and is large enough for the results to be accurate. To represent the target population the sample
+            must be selected from the target population, the whole target population, and nothing but the target
+            population. A random sample is one which has the same chance in being selected from the target population as
+            every possible sample of
+            the same size. A random sample eliminates bias in the sampling process. Finally, the bigger the sample size,
+            the more accurate the results from a representative random sample will be. The accuracy of most surveys
+            is measured in terms of <b>margin of error</b> - a percentage that represents how much the results could
+            vary if another representative random sample was selected. In cases when not everyone who was surveyed
+            responded, the sample size is the number of answers that were <nobr>received.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.266-268]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+
+        </li>
+        <li>
+            <i><u>Carrying the survey out</u></i> - during the survey itself, the participants can have problems
+            understanding
+            the questions, they may give answers that aren't among the choices, or they may decide to give answers that
+            are inaccurate or blatantly false; the latter is called <b>response bias</b>. Some of the potential problems
+            with the data collection process can be minimised or avoided with careful training of the personnel,
+            ensuring participants thet their privacy is protected, and
+            conducting a pilot study to fix any potential problems with the <nobr>questions.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.268-269]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li>
+            <i><u>Following up multiple times</u></i> - it is hard to get people to participate in surveys that they
+            don't care about. The <b>response rate</b>
+            of a survey is a ratio found by dividing the number of respondents by the number of people who were
+            originally
+            asked to participate. If the response rate is too low, the results are likely to be biased and should be
+            taken with a grain of salt, or even ignored. Regarding the quality of results, selecting a smaller initial
+            sample size and following up for answers more is a much better approach than selecting a larger group of
+            potential respondents and having a low response <nobr>rate.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.270-271]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li>
+            <i><u>Organising and analysing the data</u></i> - <a {% if 'qqdata' in navigation.data.links %}
+                class="dark-link" href="{% url 'statistics101:qqdata' %}" {% endif %}>quantitative data</a> is usually
+            presented differently than <a {% if 'qqdata' in navigation.data.links %} class="dark-link"
+                href="{% url 'statistics101:qqdata' %}" {% endif %}>qualitative data</a>. Depending on the research
+            question, different types of analyses can be performed on the
+            data, including coming up with population estimates, testing a hypothesis about the population, looking
+            for relationships <nobr>etc.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.271-272]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+        <li>
+            <i><u>Drawing conclusions</u></i> - common errors when drawing conclusions from the data include making
+            projections
+            to a larger population than the study actually represents, making claims about differences between groups
+            that don't actually exist and misrepresenting results as more scientific than they actually
+            <nobr>are.{%spaceless%}
+                {% if source_1 %}<sup>[<a target="_blank"
+                        href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.272]</sup>
+                {% endif %}{%endspaceless%}</nobr>
+        </li>
+    </ol>
+    </p>
+
+
+
+</div>
+
+
+{% endblock %}

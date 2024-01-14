@@ -1,0 +1,83 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Inbuilt Data Sets</p>
+    </div>
+</div>
+
+<div class="page-body">
+    <p>This page lists all of the inbuilt data sets of this website. Some of these data sets are
+        sourced from statistical data published by official bodies. Refer to <a {% if 'sources' in navigation %}
+            class="dark-link" href="{% url 'statistics101:sources' %}" {% endif %}>Sources</a> to view a full list
+        of origins for these data sets. All data sets not listed on the Sources page are entirely fictional.</p>
+    <div class="page-section">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="inbuilt-nav" role="tablist">
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="inbuilt-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#inbuilt-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="inbuilt-proportion-tab" data-bs-toggle="tab"
+                    data-bs-target="#inbuilt-proportion" type="button" role="tab">Proportion</button>
+            </li>
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="inbuilt-survey-tab" data-bs-toggle="tab" data-bs-target="#inbuilt-survey"
+                    type="button" role="tab">Survey</button>
+            </li>
+        </ul>
+
+        <!-- Content -->
+        <div class="tab-content" id="inbuilt-pages">
+            <!-- Timeseries -->
+            <div class="tab-pane fade show active" id="inbuilt-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 dataset-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-datadiv="#ts-dataset">
+                        {{ts.sample_name}}
+                    </button>
+                    {% endfor %}
+
+                    <div id="ts-dataset">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <!-- Proportions -->
+            <div class="tab-pane fade" id="inbuilt-proportion" role="tabpanel">
+                <div class="chart-section">
+                    {% for pr in proportions %}
+                    <button class="purple-pill me-2 dataset-btn" id={{pr.sample_name}} data-sampleid={{pr.id}}
+                        data-datadiv="#pr-dataset">
+                        {{pr.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="pr-dataset">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <!-- Surveys -->
+            <div class="tab-pane fade" id="inbuilt-survey" role="tabpanel">
+                <div class="chart-section">
+                    {% for sur in surveys %}
+                    <button class="purple-pill me-2 dataset-btn" id={{sur.sample_name}} data-sampleid={{sur.id}}
+                        data-datadiv="#sur-dataset">
+                        {{sur.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="sur-dataset">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

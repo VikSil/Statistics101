@@ -1,0 +1,190 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Percentiles</p>
+    </div>
+</div>
+
+<div class="page-body">
+
+
+    <p class="mb-1"><b>A percentile</b> is a statistic that reports <i>relative standing</i>. The k<sup>th</sup>
+        percentile is a
+        number
+        in the data set that splits the data into two parts: the lower part contains k percent of the data, and the
+        upper part contains the rest of the <nobr>data.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.88]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+        For example, if an exam score was reported to be at the 90th percentile, that means that 90% of the other
+        students scored lower and 10% scored higher on the same exam.</p>
+    <p class="mb-0">
+        There is no single definitive formula for calculating percentiles. The results using various methods may differ,
+        but not by <nobr>much.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.89]</sup>
+            {% endif %}{%endspaceless%}</nobr> The
+        k<sup>th</sup> percentile (where k is any
+        number between 1 and 100) can be calculated by hand following these
+        <nobr>steps:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.88]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ol class="mb-0">
+        <li>Numbers in the data set are ordered in ascending order.</li>
+        <li>Percent k is multiplied with n, the total count of numbers.</li>
+        <li>A. If the result from step 2. is a whole number, numbers in the data set are counted from left to right
+            until the one indicated by step 2. The k<sup>th</sup> percentile is the average of the corresponding value
+            in the data set and the value that directly follows it.</li>
+    </ol>
+    <ol start="3" class="mb-1">
+        <li>B. If the result from step 2. is not a whole number, it is rounded to the nearest whole number. Then numbers
+            in the data set are counted from left to right
+            until the one indicated by step 2. The k<sup>th</sup> percentile is the corresponding value
+            in the data set.</li>
+    </ol>
+    </p>
+
+    <p>Percentiles are used in a variety of ways for comparison purposes and to
+        determine relative <nobr>standing.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.57]</sup>
+            {% endif %}{%endspaceless%}</nobr> Percentiles have universal interpretation: being at the 95th percentile
+        means the
+        same no matter if looking at
+        exam scores or weights of packages sent through postal service; the 95th percentile always means 95% of the
+        other values lie below and 5% lie above it. This allows to fairly compare
+        two data sets that have different<a {% if 'mean' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:mean' %}" {% endif %}>
+            means</a> and <a {% if 'stdev' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:stdev' %}" {% endif %}>standard <nobr>deviations</a>.{%spaceless%}
+        {% if source_1 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.89]</sup>
+        {% endif %}{%endspaceless%}</nobr> Percentile is <b>not</b> a percent, it is a number that marks a certain
+        percentage
+        of the way through the data.
+        Suppose that a student's score on an exam was reported to be in the 80th percentile. This does not mean that
+        they scored 80% of the questions correctly. It means that 80% of the other students' scores were lower than
+        theirs and 20% students' were higher than <nobr>theirs.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.89]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <h4 class="subtitle">Five-number summary</h4>
+    <p class="mb-1">While the Empirical Rule uses the mean and standard deviation to describe a bell-shaped data set, in
+        the case
+        where data is not bell-shaped a different set of statistics based on percentiles is used to describe the big
+        picture of data. <b>The five-number summary</b> is a set of five descriptive statistics that divide the data set
+        into
+        four sections with equal amount of data in each section. These cutoff points are represented
+        by a set of five statistics that describe how the data is laid <nobr>out.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.93]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-0">The five numbers in a five-number summary <nobr>are:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.93]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ol class="mb-1">
+        <li>The minimums (smallest) number in the data set.</li>
+        <li>The 25th percentile (also known as the <i>first quartile</i> or Q<sub>1</sub>).</li>
+        <li>The 50th percentile (the <a {% if 'median' in navigation.stats.links %} class="dark-link"
+                href="{% url 'statistics101:median' %}" {% endif %}>median</a>, also known as the <i>second quartile</i>
+            or Q<sub>2</sub>).</li>
+        <li>The 75th percentile (also known as the <i>third quartile</i> or Q<sub>3</sub>).</li>
+        <li>The maximum (largest) number in the data set.</li>
+    </ol>
+    </p>
+
+    <p>The purpose of the five-number summary is to give descriptive statistics for center, variation and relative
+        standing all at the same <nobr>time.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.94]</sup>
+            {% endif %}{%endspaceless%}</nobr> The largest value in the data set minus the smallest value in the data
+        set is called the <b>range</b>. It is easy to find,
+        but it is almost meaningless. It depends on only two numbers, both of which may be outliers.
+        The distance between 25th and 75th percentile is called <b>interquartile range</b>.
+        It reflects the innermost 50% of the data in the five-number summary. Interquartile range is evaluated in the
+        context
+        of full range of the data set.
+        It is similar to range with an important difference - it
+        eliminates outlier and <a {% if 'histogram' in navigation.charts.links %} class="dark-link"
+            href="{% url 'statistics101:histogram' %}" {% endif %}>skewness</a>
+        <nobr>issues.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.84]</sup>
+            {% endif %}{%endspaceless%}</nobr> When the data is skewed, interquartile range is a more appropriate
+        measure of
+        variability than standard <nobr>deviation.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.115]</sup>
+            {% endif %}{%endspaceless%}</nobr> If the interquartile
+        range is small, a lot of data is close to the median. If the interquartile range is large, the data is more
+        spread out from the <nobr>median.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.94]</sup>
+            {% endif %}{%endspaceless%}</nobr> The larger the interquartile range the more variable the data set <nobr>
+            is.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.123]</sup>
+            {% endif %}{%endspaceless%}</nobr> Five number
+        summary is commonly represented by a <a {% if 'boxplot' in navigation.charts.links %} class="dark-link"
+            href="{% url 'statistics101:boxplot' %}" {% endif%}>boxplot</a> graph.
+    </p>
+
+    <div class="page-section">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="perc-nav" role="tablist">
+            {% if timeseries %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link active" id="perc-timeseries-tab" data-bs-toggle="tab"
+                    data-bs-target="#perc-timeseries" type="button" role="tab">Time series</button>
+            </li>
+            {% endif %}
+            {% if surveys %}
+            <li class="tabulation" role="presentation">
+                <button class="nav-link" id="perc-survey-tab" data-bs-toggle="tab" data-bs-target="#perc-survey"
+                    type="button" role="tab">Survey</button>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- Content -->
+        <div class="tab-content" id="perc-pages">
+            <div class="tab-pane fade show active" id="perc-timeseries" role="tabpanel">
+                <div class="chart-section">
+                    {% for ts in timeseries %}
+                    <button class="purple-pill me-2 statistics-btn" id={{ts.sample_name}} data-sampleid={{ts.id}}
+                        data-datadiv="#ts-perc" data-f="get_percentiles">
+                        {{ts.sample_name}}
+                    </button>
+                    {% endfor %}
+
+                    <div id="ts-perc">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="perc-survey" role="tabpanel">
+                <div class="chart-section">
+                    {% for sur in surveys %}
+                    <button class="purple-pill me-2 statistics-btn" id={{sur.sample_name}} data-sampleid={{sur.id}}
+                        data-datadiv="#sur-perc" data-f="get_percentiles">
+                        {{sur.sample_name}}
+                    </button>
+                    {% endfor %}
+                    <div id="sur-perc">
+                        {% include 'statistics101/dataset.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

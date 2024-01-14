@@ -1,0 +1,141 @@
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div>
+    <div class="page-header">
+        <p>Types of Data</p>
+    </div>
+</div>
+
+<div class="page-body">
+    <p>The word <i>"<b>data</b>"</i> is a
+        general purpose word denoting a collection of measurements. There is a debate raging amongs statisticians about
+        whether the word should be singular or
+        <nobr>plural.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.2]</sup>
+            {% endif %}{%endspaceless%}{%spaceless%}
+            {% if source_3 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_3}}</a>]</sup>
+            {% endif %}{%endspaceless%}</nobr> For the purposes of this website "data" is treated as a singular
+        non-countable noun (like
+        "butter"), while "data points" are countable and plural (like "packs of butter") that refer to individual
+        instances of data. A <b><a {% if 'inbuilts' in navigation.ds.links %} class="dark-link"
+                href="{% url 'statistics101:inbuilts' %}" {% endif %}>data set</a></b> is a well-structured set of data
+        points. Data points can be of several <b>data
+            types</b>, such
+        as
+        numbers, or text, or date-times. When data on similar objects is collected, the data
+        points are bundled into a <nobr>variable.{%spaceless%}
+            {% if source_4 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_4}}</a>]</sup>
+            {% endif %}{%endspaceless%}</nobr> A <b>variable</b> is a characteristic that's being counted, measured or
+        categorised,
+        e.g. age, number of pets, favourite color <nobr>etc.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.16]</sup>
+            {% endif %}{%endspaceless%}</nobr> The measurements, number (count) or category (group) associated with data
+        points are
+        called <b>values</b> of the <nobr>variable.{%spaceless%}
+            {% if source_4 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_4}}</a>]</sup>
+            {% endif %}{%endspaceless%}</nobr> A <b>statistic</b> is a number that summarises or describes some
+        characteristic (i.e.
+        variable) of a data <nobr>set.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.71]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+
+    <h4 class="subtitle" id="qualitative-data">Qualitative (Categorical) Data</h4>
+    <p class="mb-1">Qualitative data represent characteristics, e.g. marital status, hometown, favourite color etc.
+        Qualitative data
+        tends to fall into categories naturally, and is also known as <i>categorical data</i>. Qualitative data
+        can be coded by numerical values, but meaningful
+        arithmetical operations cannot be performed on those numbers. Sometimes numerical data, like age, that would
+        normally be considered quantitative data, is broken down into categories, making it a qualitative variable.
+        Qualitative data often comes from <a {% if 'surveys' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:surveys' %}" {% endif %}>surveys</a>, but
+        it
+        can be collected in <a {% if 'experiments' in navigation.data.links %} class="dark-link"
+            href="{% url 'statistics101:experiments' %}" {% endif %}>experiments</a> as <nobr>well.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,pp.50,72-73]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p class="mb-1">If the data is categorical, it is typically summarised
+        using <a {% if 'frequency' in navigation.stats.links %} class="dark-link"
+            href="{% url 'statistics101:frequency' %}" {% endif %}>frequency or relative
+            frequency</a>. <b>Frequency</b> is the number of data points in each category. <b>Relative frequency</b> is
+        the
+        percentage of
+        the category within the data <nobr>set.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.15]</sup>
+            {% endif %}{%endspaceless%}</nobr> <b>Rate</b> is an amount-per-unit measure of event frequency that is
+        obtained by
+        converting each
+        number to a percent by dividing it by the total. Rates are usually better than absolute values because rates
+        allow for fair comparisons when the totals are <nobr>different.{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.39]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+
+    <p>Some of the basic graphs used for categorical data include <a {% if 'piechart' in navigation.charts.links %}
+            class="dark-link" href="{% url 'statistics101:piechart' %}" {% endif %}>pie chart</a>
+        and <a {% if 'barchart' in navigation.charts.links %} class="dark-link"
+            href="{% url 'statistics101:barchart' %}" {% endif %}>bar
+            <nobr>graphs
+        </a>.{%spaceless%}
+        {% if source_1 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.16]</sup>
+        {% endif %}{%endspaceless%}</nobr>
+
+    </p>
+
+
+    <h4 class="subtitle" id="quantitative-data">Quantitative (Numerical) Data</h4>
+    <p class="mb-0">Quantitative data are measures of values or counts that are expressed as <nobr>numbers.{%spaceless%}
+            {%if source_10 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_10}}</a>]</sup>
+            {% endif %}{%endspaceless%}</nobr> Quantitative data can be further broken down into two <nobr>
+            types:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.50]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    </p>
+    <ul>
+        <li>Discrete data- represents separate, countable items that take on possible values that can be listed. The
+            list of values may be finite or infinite.</li>
+        <li>Continuous data- represents measurements with possible values that can not be listed, and can only be
+            described using intervals on the real number line.</li>
+    </ul>
+
+    <p class="mb-0">Some of the measures of quantitative data
+        <nobr>include:{%spaceless%}
+            {% if source_1 %}<sup>[<a target="_blank"
+                    href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.15]</sup>
+            {% endif %}{%endspaceless%}</nobr>
+    <ul>
+        <li>Measures of center- <a {% if 'mean' in navigation.stats.links %} class="dark-link"
+                href="{% url 'statistics101:mean' %}" {% endif %}>mean</a>
+            and <a {% if 'median' in navigation.stats.links %} class="dark-link" href="{% url 'statistics101:median' %}"
+                {% endif %}>median</a></li>
+        <li>Measures of spread- <a {% if 'stdev' in navigation.stats.links %} class="dark-link"
+                href="{% url 'statistics101:stdev' %}" {% endif %}>standard deviation</a>
+            and <a {% if 'percentiles' in navigation.stats.links %} class="dark-link"
+                href="{% url 'statistics101:percentiles' %}" {% endif %}>percentiles</a></li>
+        <li>Measures of relationship</li>
+    </ul>
+
+    Graphs called <a {% if 'histogram' in navigation.charts.links %} class="dark-link"
+        href="{% url 'statistics101:histogram' %}" {% endif %}>
+        histograms</a> and <a {% if 'boxplot' in navigation.charts.links %} class="dark-link"
+        href="{% url 'statistics101:boxplot' %}" {% endif %}>boxplots</a>
+    are used to visually summarise numerical
+    data, and they
+    can be very informative, providing excellent on-the-spot information about a data <nobr>set.{%spaceless%}
+        {% if source_1 %}<sup>[<a target="_blank" href="{% url 'statistics101:sources' %}">{{source_1}}</a>,p.16]</sup>
+        {% endif %}{%endspaceless%}</nobr>
+    </p>
+</div>
+{% endblock %}

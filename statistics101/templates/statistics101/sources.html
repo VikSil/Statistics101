@@ -1,0 +1,75 @@
+<!-- Data for this page is contained in Sorce model -->
+<!-- Function order_sources() in globals.py lists the sources in the correct order upon server initialisation-->
+<!-- Data is passed to this template in a variable ALL_SOURCES from globals.py -->
+
+{% extends "statistics101/layout.html" %}
+
+{% block body %}
+
+<div class="page-header">
+    <p>Sources</p>
+</div>
+<div class="page-body">
+    <ol>
+        <!-- Spaceless operators are necessary because Visual Studio linebreak adds a space to the output and spaceless tag removes it-->
+        {% for source in sources %}
+        <!-- Add titles on the correct iterration -->
+        {% if book_count > 0 and forloop.counter == 1 %}<h4 class="subtitle">Books</h4>{% endif %}
+        {% if book_count == forloop.counter0 and video_count > book_count %}<h4 class="subtitle">Video</h4>{% endif %}
+        {% if video_count == forloop.counter0 and publication_count > video_count %}
+        <h4 class="subtitle">Publications</h4>{% endif %}
+        {% if publication_count == forloop.counter0 and website_count > publication_count %}
+        <h4 class="subtitle">Websites</h4>{% endif %}
+        {% if website_count == forloop.counter0 and datasets_count > website_count %}
+        <h4 class="subtitle">Data Sets</h4>{% endif %}
+        <!-- Books -->
+        {% if source.SourceType == 1 %}
+        <li>
+            {{source.Author}}{% if source.Editorial %} (eds.){% endif %}: {{source.Title}}.
+            {%if source.Place%}{{source.Place}}: {%endif%}{{source.Publisher}} {{source.Year}}{%spaceless%}
+            {%endspaceless%}{%if source.ISBN10%}, ISBN10:
+            <!-- Blank target forces link to open in a new tab -->
+            <a class="dark-link" target="_blank"
+                href="https://www.google.com/search?q={{source.ISBN10}}">{{source.ISBN10}}</a>{%endif%}{%spaceless%}
+            {%endspaceless%}{%if source.ISBN13%}, ISBN13:
+            <a class="dark-link" target="_blank"
+                href="https://www.google.com/search?q={{source.ISBN13}}">{{source.ISBN13}}</a>{%endif%}
+        </li>
+        <!-- Video -->
+        {% elif source.SourceType == 2 %}
+        <li></li>
+        <!-- Publications -->
+        {% elif source.SourceType == 3 %}
+        <li></li>
+        <!-- Websites -->
+        {% elif source.SourceType == 4 %}
+        <li>
+            {% if source.Container %}{{source.Container}}: {% endif %}{{source.Title}}{% if source.Author %} by
+            {{source.Author}}{% endif %}{% if source.Publisher %}, in domain of
+            {{source.Publisher}}{% endif %},
+            last accessed {% if source.FullDate %}{{source.FullDate}}{% else %}{{source.Year}}{% endif %},
+            <a class="dark-link" target="_blank" href={{source.URL}}>{{source.URL}}</a>
+        </li>
+        <!-- Data Sets -->
+        {% elif source.SourceType == 5 %}
+        <li>{% if source.Container %}{{source.Container}}: {% endif %}{{source.Title}}{% if source.Author %} by
+            {{source.Author}}{% endif %}{% if source.Publisher %}, in domain of
+            {{source.Publisher}}{% endif %},
+            last accessed {% if source.FullDate %}{{source.FullDate}}{% else %}{{source.Year}}{% endif %},
+            <a class="dark-link" target="_blank" href={{source.URL}}>{{source.URL}}</a>
+        </li>
+        {% else %}
+        <!-- Nothing happens here, since only five types are used-->
+        {% endif %}
+        {% endfor %}
+    </ol>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
