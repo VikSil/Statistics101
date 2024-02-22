@@ -2,7 +2,7 @@
 
 This web page was developed as the Capstone project for [CS50's Web Programming with Python and JavaScript](https://cs50.harvard.edu/web/2020/) course by Harvard OpenCourseWare.
 
-The website is an education resource that explores the basics of statistics. Statistics is a branch of mathematics that pertains to the collection, analysis, interpretation or explanation, and presentation of data. 
+The website is an education resource that explores the basics of statistics. Statistics is a branch of mathematics that pertains to the collection, analysis, interpretation or explanation, and presentation of data. Hosted version is available [here](https://viksil.pythonanywhere.com/statistics101) (it may take a while to load, since it is hosted on pythonanywhere free tier).
 
 
 ## Distinctiveness and Complexity
@@ -92,8 +92,3 @@ In order to start the project, use console to navigate to the directory where th
 
 The website will now be available on the localhost. Input the following url in the browser to access it: `http://127.0.0.1:8000/statistics101`
 
-
-
-## Additional information 
-
-The website has been deployed and is available for viewing on https://viksil.pythonanywhere.com/statistics101
