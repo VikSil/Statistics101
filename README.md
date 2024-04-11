@@ -4,6 +4,8 @@ This web page was developed as the Capstone project for [CS50's Web Programming 
 
 The website is an education resource that explores the basics of statistics. Statistics is a branch of mathematics that pertains to the collection, analysis, interpretation or explanation, and presentation of data. Hosted version is available [here](https://viksil.pythonanywhere.com/statistics101) (it may take a while to load, since it is hosted on pythonanywhere free tier).
 
+<p align = "center"><img src ="https://raw.githubusercontent.com/VikSil/Statistics101/trunk/quant/assets/GIF_demo.gif" alt="Website demo GIF"/></p>
+
 Deployed version of the website can be viewed [here](https://viksil.pythonanywhere.com/statistics101).
 Video demo can be viewed [here](https://youtu.be/sdl8YkIIXxA).
 
