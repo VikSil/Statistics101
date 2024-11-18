@@ -6,7 +6,7 @@ The website is an education resource that explores the basics of statistics. Sta
 
 <p align = "center"><img src ="https://raw.githubusercontent.com/VikSil/Statistics101/trunk/quant/assets/GIF_demo.gif" alt="Website demo GIF"/></p>
 
-Deployed version of the website can be viewed [here](https://viksil.pythonanywhere.com/statistics101) (it may take a while to load, since it is hosted on pythonanywhere free tier). Video demo can be viewed [here](https://youtu.be/sdl8YkIIXxA).
+Deployed version of the website can be viewed [here](https://viksil.pythonanywhere.com/statistics101) (it may take a while to load, since it is hosted on pythonanywhere free tier). Video demo can be viewed [here](https://youtu.be/sdl8YkIIXxA). The rest of this README was structured in accordance to the [course requirements](https://cs50.harvard.edu/web/2020/projects/final/capstone/). Press [here](https://github.com/VikSil/Statistics101#how-to-run-the-application) to fast forward to how to run the application.
 
 ## Distinctiveness and Complexity
 
